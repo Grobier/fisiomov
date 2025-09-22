@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "56912345678"
+    const phoneNumber = "56963352063"
     const message = "Hola! Me interesa conocer más sobre FISIOMOV"
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')

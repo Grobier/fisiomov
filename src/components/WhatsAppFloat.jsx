@@ -30,7 +30,7 @@ const WhatsAppFloat = () => {
     setHasInteracted(true)
     setShowTooltip(false)
     
-    const phoneNumber = "56912345678"
+    const phoneNumber = "56963352063"
     const message = "Hola! Vengo desde la página web de FISIOMOV y me interesa conocer más sobre sus servicios."
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     

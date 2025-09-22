@@ -4,7 +4,7 @@ import { FaWhatsapp, FaCalendarAlt } from 'react-icons/fa'
 const Hero = () => {
   const handleWhatsAppClick = () => {
     // Reemplazar con tu número de WhatsApp
-    const phoneNumber = "56912345678" // Formato: código país + número sin +
+    const phoneNumber = "56963352063" // Formato: código país + número sin +
     const message = "Hola! Me interesa conocer más sobre los servicios de FISIOMOV"
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
@@ -12,7 +12,7 @@ const Hero = () => {
 
   const handleScheduleClick = () => {
     // Reemplazar con tu enlace de Google Calendar
-    const calendarUrl = "https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID"
+    const calendarUrl = "https://calendar.app.google/ofAAA1auXWNjXKh59"
     window.open(calendarUrl, '_blank')
   }
 

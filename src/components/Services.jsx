@@ -82,14 +82,14 @@ const Services = () => {
   ]
 
   const handleWhatsAppClick = (serviceName) => {
-    const phoneNumber = "56912345678"
+    const phoneNumber = "56963352063"
     const message = `Hola! Me interesa el servicio de ${serviceName}. ¿Podrías darme más información?`
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
   }
 
   const handleScheduleClick = () => {
-    const calendarUrl = "https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID"
+    const calendarUrl = "https://calendar.app.google/ofAAA1auXWNjXKh59"
     window.open(calendarUrl, '_blank')
   }
 
