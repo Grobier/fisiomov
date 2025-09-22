@@ -146,32 +146,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Credentials Cards */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🎓</span>
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">Título Profesional</h4>
-              <p className="text-gray-600 text-sm">Kinesiólogo Universidad de Chile</p>
-            </div>
-            
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-500 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🏆</span>
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">Especialización</h4>
-              <p className="text-gray-600 text-sm">Rehabilitación Deportiva</p>
-            </div>
-            
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">📜</span>
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">Certificaciones</h4>
-              <p className="text-gray-600 text-sm">Terapia Manual Avanzada</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

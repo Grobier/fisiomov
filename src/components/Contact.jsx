@@ -206,34 +206,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Contact Info Cards */}
-        <div className="max-w-3xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <FaMapMarkerAlt className="text-white text-lg" />
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">Ubicación</h4>
-              <p className="text-gray-600 text-sm">Santiago, Chile</p>
-            </div>
-            
-            <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <FaPhone className="text-white text-lg" />
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">Teléfono</h4>
-                <p className="text-gray-600 text-sm">+56 9 6335 2063</p>
-            </div>
-            
-            <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <FaEnvelope className="text-white text-lg" />
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">Email</h4>
-              <p className="text-gray-600 text-sm">contacto@fisiomov.cl</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )
