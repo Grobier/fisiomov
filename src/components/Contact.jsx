@@ -32,27 +32,26 @@ const Contact = () => {
   }
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "56912345678"
+    const phoneNumber = "56963352063"
     const message = "Hola! Me interesa agendar una consulta con FISIOMOV. ¿Podrías ayudarme?"
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
   }
 
   const handleScheduleClick = () => {
-    // Reemplazar con tu enlace real de Google Calendar
-    const calendarUrl = "https://calendar.google.com/calendar/appointments/schedules/YOUR_SCHEDULE_ID"
+    const calendarUrl = "https://calendar.app.google/ofAAA1auXWNjXKh59"
     window.open(calendarUrl, '_blank')
   }
 
   const handleCallClick = () => {
-    window.open('tel:+56912345678', '_self')
+    window.open('tel:+56963352063', '_self')
   }
 
   const contactInfo = [
     {
       icon: FaPhone,
       title: "Teléfono",
-      info: "+56 9 1234 5678",
+      info: "+56 9 6335 2063",
       action: handleCallClick,
       color: "bg-blue-500"
     },
@@ -223,7 +222,7 @@ const Contact = () => {
                 <FaPhone className="text-white text-lg" />
               </div>
               <h4 className="font-bold text-gray-900 mb-2">Teléfono</h4>
-              <p className="text-gray-600 text-sm">+56 9 1234 5678</p>
+                <p className="text-gray-600 text-sm">+56 9 6335 2063</p>
             </div>
             
             <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">

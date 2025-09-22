@@ -128,10 +128,10 @@ const Footer = () => {
               <div className="flex items-center">
                 <FaPhone className="text-primary-400 mr-3" />
                 <a 
-                  href="tel:+56912345678" 
+                  href="tel:+56963352063" 
                   className="text-gray-300 hover:text-white transition-colors duration-200"
                 >
-                  +56 9 1234 5678
+                  +56 9 63352063
                 </a>
               </div>
               
@@ -210,7 +210,7 @@ const Footer = () => {
                 onClick={handleWhatsAppClick}
                 className="ml-2 underline hover:no-underline"
               >
-                +56 9 1234 5678
+                +56 9 6335 2063
               </button>
             </p>
           </div>
