@@ -7,7 +7,6 @@ import Testimonials from './components/Testimonials'
 import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import WhatsAppFloat from './components/WhatsAppFloat'
 import ScrollAnimations from './components/ScrollAnimations'
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
       <About />
       <Contact />
       <Footer />
-      <WhatsAppFloat />
     </div>
   )
 }
