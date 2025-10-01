@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight, FaPlay } from 'react-icons/fa'
+import React, { useState } from 'react'
+import { FaQuoteLeft, FaStar, FaPlay } from 'react-icons/fa'
 
 const Testimonials = () => {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-  const [showVideo, setShowVideo] = useState(false)
+  const [playingVideo, setPlayingVideo] = useState(null)
 
   const testimonials = [
     {
       id: 1,
-      name: "María González",
-      age: 28,
-      sport: "Runner",
-      injury: "Lesión de rodilla",
-      image: "/testimonial-maria.jpg",
+      name: "Fran",
+      age: 30,
+      sport: "Atleta",
+      injury: "Recuperación muscular",
+      image: "/testimonial-fran.jpg",
       rating: 5,
-      text: "Después de 6 meses sin poder correr por una lesión de rodilla, FISIOMOV me ayudó a recuperarme completamente. No solo volví a correr, sino que ahora lo hago mejor que antes. El enfoque personalizado y el seguimiento constante fueron clave en mi recuperación.",
-      result: "Volvió a correr en 8 semanas",
+      text: "El servicio de Recovery de FISIOMOV ha sido fundamental en mi proceso de recuperación. Las sesiones con masaje, pistola de percusión y sauna me han ayudado a recuperarme más rápido y entrenar sin dolor.",
+      result: "Recuperación muscular óptima",
       beforeAfter: {
-        before: "No podía correr más de 5 minutos",
-        after: "Completó su primera maratón post-lesión"
+        before: "Dolor y tensión muscular constante",
+        after: "Entrenamiento sin molestias y mejor rendimiento"
       },
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Reemplazar con video real
+      videoUrl: "https://www.youtube.com/embed/gF3dE9EvVIk"
     },
     {
       id: 2,
@@ -35,7 +34,8 @@ const Testimonials = () => {
       beforeAfter: {
         before: "Dolor constante al caminar",
         after: "Juega 90 minutos sin molestias"
-      }
+      },
+      videoUrl: "https://www.youtube.com/embed/example2"
     },
     {
       id: 3,
@@ -50,7 +50,8 @@ const Testimonials = () => {
       beforeAfter: {
         before: "Dolor diario nivel 7/10",
         after: "Sin dolor, entrena 5 días a la semana"
-      }
+      },
+      videoUrl: "https://www.youtube.com/embed/example3"
     },
     {
       id: 4,
@@ -65,7 +66,8 @@ const Testimonials = () => {
       beforeAfter: {
         before: "No podía pedalear más de 30 minutos",
         after: "Completó 100km sin molestias"
-      }
+      },
+      videoUrl: "https://www.youtube.com/embed/example4"
     },
     {
       id: 5,
@@ -80,25 +82,26 @@ const Testimonials = () => {
       beforeAfter: {
         before: "Movilidad limitada a 90 grados",
         after: "Movilidad completa, es instructora de yoga"
-      }
+      },
+      videoUrl: "https://www.youtube.com/embed/example5"
+    },
+    {
+      id: 6,
+      name: "Roberto Martínez",
+      age: 28,
+      sport: "Crossfit",
+      injury: "Lesión de muñeca",
+      image: "/testimonial-roberto.jpg",
+      rating: 5,
+      text: "Mi lesión de muñeca me tenía fuera del box por meses. El tratamiento de FISIOMOV fue integral: rehabilitación específica, ejercicios de fortalecimiento y técnicas de prevención. Ahora no solo puedo hacer todos los movimientos, sino que mi técnica mejoró significativamente.",
+      result: "Regresó al Crossfit con mejor técnica",
+      beforeAfter: {
+        before: "No podía hacer flexiones ni dominadas",
+        after: "Completa WODs sin dolor, técnica mejorada"
+      },
+      videoUrl: "https://www.youtube.com/embed/example6"
     }
   ]
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-  }
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
-
-  // Auto-rotate testimonials
-  useEffect(() => {
-    const interval = setInterval(nextTestimonial, 8000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const currentTest = testimonials[currentTestimonial]
 
   return (
     <section id="testimonios" className="section-padding bg-white">
@@ -118,93 +121,97 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Testimonials with Video */}
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Video Side */}
-            <div className="relative">
-              {!showVideo ? (
-                <div className="relative bg-slate-800 rounded-lg overflow-hidden aspect-video group cursor-pointer" onClick={() => setShowVideo(true)}>
-                  <img 
-                    src={currentTest.image}
-                    alt={`Video testimonio ${currentTest.name}`}
-                    className="w-full h-full object-cover opacity-60"
-                    onError={(e) => {
-                      e.target.style.display = 'none'
-                      e.target.nextSibling.style.display = 'flex'
-                    }}
-                  />
-                  {/* Fallback background */}
-                  <div className="hidden w-full h-full bg-slate-800 items-center justify-center">
-                    <div className="text-white text-center">
-                      <FaPlay className="text-4xl mx-auto mb-4" />
-                      <p className="text-lg">Video Testimonio</p>
+        {/* Testimonials Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.id} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+              {/* Video Section */}
+              <div className="mb-6">
+                {playingVideo === testimonial.id ? (
+                  <div className="relative bg-slate-800 rounded-lg overflow-hidden aspect-video">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={testimonial.videoUrl}
+                      title={`Testimonio de ${testimonial.name}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  </div>
+                ) : (
+                  <div 
+                    className="relative bg-slate-800 rounded-lg overflow-hidden aspect-video group cursor-pointer" 
+                    onClick={() => setPlayingVideo(testimonial.id)}
+                  >
+                    <img 
+                      src={testimonial.image}
+                      alt={`Video testimonio ${testimonial.name}`}
+                      className="w-full h-full object-cover opacity-60"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                        e.target.nextSibling.style.display = 'flex'
+                      }}
+                    />
+                    {/* Fallback background */}
+                    <div className="hidden w-full h-full bg-slate-800 items-center justify-center">
+                      <div className="text-white text-center">
+                        <FaPlay className="text-4xl mx-auto mb-4" />
+                        <p className="text-lg">Video Testimonio</p>
+                      </div>
+                    </div>
+                    
+                    {/* Play button overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 bg-slate-700 bg-opacity-80 rounded-full flex items-center justify-center group-hover:bg-opacity-100 transition-all duration-300 group-hover:scale-110">
+                        <FaPlay className="text-white text-xl ml-1" />
+                      </div>
+                    </div>
+                    
+                    {/* Patient info overlay */}
+                    <div className="absolute bottom-3 left-3 text-white">
+                      <p className="font-medium text-sm">{testimonial.name}</p>
+                      <p className="text-xs opacity-80">{testimonial.sport}</p>
                     </div>
                   </div>
-                  
-                  {/* Play button overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 bg-slate-700 bg-opacity-80 rounded-full flex items-center justify-center group-hover:bg-opacity-100 transition-all duration-300 group-hover:scale-110">
-                      <FaPlay className="text-white text-2xl ml-1" />
-                    </div>
-                  </div>
-                  
-                  {/* Patient info overlay */}
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <p className="font-light text-lg">{currentTest.name}</p>
-                    <p className="text-sm opacity-80">{currentTest.sport}</p>
-                  </div>
-                </div>
-              ) : (
-                <div className="relative bg-slate-800 rounded-lg overflow-hidden aspect-video">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={currentTest.videoUrl}
-                    title={`Testimonio de ${currentTest.name}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  ></iframe>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            {/* Content Side */}
-            <div className="text-center lg:text-left">
-              <div className="bg-slate-800 text-white p-8 rounded-lg">
-                <blockquote className="text-xl md:text-2xl font-light leading-relaxed mb-6 tracking-tight">
-                  "{currentTest.text.split('.')[0]}."
-                </blockquote>
-                
-                <div className="text-slate-300 text-sm tracking-wide mb-6">
-                  — {currentTest.name}, {currentTest.sport}
-                </div>
+              {/* Rating */}
+              <div className="flex justify-center mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <FaStar key={i} className="text-yellow-400 text-sm" />
+                ))}
+              </div>
 
-                <div className="border-t border-slate-600 pt-6">
-                  <div className="text-slate-300 text-sm mb-2">Resultado:</div>
-                  <div className="text-white font-medium">{currentTest.result}</div>
+              {/* Testimonial Text */}
+              <blockquote className="text-gray-700 text-center mb-4 leading-relaxed text-sm">
+                "{testimonial.text}"
+              </blockquote>
+
+              {/* Patient Info */}
+              <div className="text-center mb-4">
+                <div className="font-semibold text-gray-900 text-base">{testimonial.name}</div>
+                <div className="text-gray-600 text-xs mb-1">{testimonial.sport} • {testimonial.age} años</div>
+                <div className="text-green-600 font-medium text-xs">{testimonial.result}</div>
+              </div>
+
+              {/* Before/After */}
+              <div className="pt-4 border-t border-gray-100">
+                <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div>
+                    <div className="text-red-600 font-medium mb-1">Antes:</div>
+                    <div className="text-gray-600">{testimonial.beforeAfter.before}</div>
+                  </div>
+                  <div>
+                    <div className="text-green-600 font-medium mb-1">Después:</div>
+                    <div className="text-gray-600">{testimonial.beforeAfter.after}</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex justify-center space-x-2 mt-12">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setCurrentTestimonial(index)
-                  setShowVideo(false)
-                }}
-                className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentTestimonial ? 'bg-slate-800' : 'bg-gray-300'
-                }`}
-              />
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -5,15 +5,6 @@ const Benefits = () => {
   const benefits = [
     {
       id: 1,
-      title: "Mejora tu Movilidad",
-      description: "Recupera y aumenta tu rango de movimiento con técnicas especializadas que te permitirán moverte sin restricciones.",
-      icon: FaRunning,
-      gradient: "from-blue-400 to-cyan-500",
-      stats: "95% mejora",
-      emoji: "🏃‍♂️"
-    },
-    {
-      id: 2,
       title: "Recuperación Rápida",
       description: "Acelera tu proceso de rehabilitación con tratamientos personalizados y seguimiento continuo de tu progreso.",
       icon: FaClock,
@@ -22,7 +13,7 @@ const Benefits = () => {
       emoji: "⚡"
     },
     {
-      id: 3,
+      id: 2,
       title: "Prevención de Recaídas",
       description: "Fortalece tu cuerpo y aprende técnicas que te ayudarán a evitar futuras lesiones y mantener tu salud a largo plazo.",
       icon: FaShieldAlt,
@@ -31,7 +22,7 @@ const Benefits = () => {
       emoji: "🛡️"
     },
     {
-      id: 4,
+      id: 3,
       title: "Mejora del Rendimiento",
       description: "Optimiza tu capacidad física y deportiva con programas diseñados para potenciar tu rendimiento al máximo.",
       icon: FaTrophy,
@@ -40,40 +31,13 @@ const Benefits = () => {
       emoji: "🏆"
     },
     {
-      id: 5,
+      id: 4,
       title: "Confianza al Entrenar",
       description: "Recupera la seguridad en ti mismo y vuelve a disfrutar del deporte sin miedo a lesionarte nuevamente.",
       icon: FaHeart,
       gradient: "from-red-400 to-pink-500",
       stats: "90% más confianza",
       emoji: "💪"
-    },
-    {
-      id: 6,
-      title: "Flexibilidad Mejorada",
-      description: "Aumenta tu flexibilidad y elasticidad muscular para movimientos más fluidos y naturales.",
-      icon: FaRunning,
-      gradient: "from-indigo-400 to-purple-500",
-      stats: "85% más flexible",
-      emoji: "🤸‍♂️"
-    },
-    {
-      id: 7,
-      title: "Fuerza Funcional",
-      description: "Desarrolla fuerza específica para tus actividades diarias y deportivas favoritas.",
-      icon: FaDumbbell,
-      gradient: "from-slate-400 to-slate-600",
-      stats: "70% más fuerte",
-      emoji: "💪"
-    },
-    {
-      id: 8,
-      title: "Equilibrio y Coordinación",
-      description: "Mejora tu equilibrio y coordinación para movimientos más precisos y seguros.",
-      icon: FaHeart,
-      gradient: "from-teal-400 to-blue-500",
-      stats: "90% mejor equilibrio",
-      emoji: "⚖️"
     }
   ]
 
@@ -89,7 +53,7 @@ const Benefits = () => {
 
         {/* Modern Benefits Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {benefits.slice(0, 8).map((benefit, index) => {
+          {benefits.map((benefit, index) => {
             const IconComponent = benefit.icon
             
             return (
@@ -135,39 +99,6 @@ const Benefits = () => {
               </div>
             )
           })}
-        </div>
-
-        {/* Call to Action Card */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 text-center shadow-2xl border border-slate-700">
-            <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white bg-opacity-10 rounded-2xl mb-4">
-                <span className="text-3xl">🎯</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                ¿Listo para transformar tu cuerpo?
-              </h3>
-              <p className="text-slate-300 text-lg max-w-2xl mx-auto leading-relaxed">
-                Únete a cientos de personas que ya han experimentado estos increíbles beneficios
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button 
-                onClick={() => document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' })}
-                className="bg-white text-slate-900 hover:bg-gray-100 font-semibold py-3 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
-              >
-                <span>🚀</span>
-                Comenzar Ahora
-              </button>
-              <button 
-                onClick={() => document.querySelector('#testimonios').scrollIntoView({ behavior: 'smooth' })}
-                className="border-2 border-white text-white hover:bg-white hover:text-slate-900 font-semibold py-3 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                Ver Testimonios
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </section>
