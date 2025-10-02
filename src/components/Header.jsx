@@ -68,11 +68,11 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <button 
-              onClick={() => scrollToSection('#contacto')}
-              className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              onClick={() => window.open('https://calendly.com/grobier/30minutos', '_blank')}
+              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-2 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              🚀 Agenda Gratis
-            </button>
+              🚀 Agenda una llamada gratis
+</button>
           </div>
 
           {/* Mobile menu button */}
@@ -100,11 +100,11 @@ const Header = () => {
                 </button>
               ))}
               <button 
-                onClick={() => scrollToSection('#contacto')}
-                className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-medium py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full mt-4 flex items-center justify-center gap-2"
+                onClick={() => window.open('https://calendly.com/grobier/30minutos', '_blank')}
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-3 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full mt-4 flex items-center justify-center gap-2"
               >
                 <span>🚀</span>
-                Agenda Gratis
+                Agenda una llamada gratis
               </button>
             </div>
           </div>

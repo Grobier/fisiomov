@@ -76,10 +76,10 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="section-padding bg-gray-50">
+    <section id="about" className="py-6 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="container-max">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-8">
           <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-2 rounded-full text-sm font-medium mb-6 shadow-lg">
             <span className="mr-2">👨‍⚕️</span>
             Conoce al experto

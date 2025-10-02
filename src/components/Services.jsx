@@ -8,7 +8,7 @@ const Services = () => {
   const services = [
     {
       id: 1,
-      title: "Rehabilitación y Fisioterapia",
+      title: "Rehabilitación",
       description: "Tu dolor no es normal, aunque lleves años convenciéndote de que sí. Aquí no te enchufo máquinas ni te vendo milagros: trabajamos contigo, en serio, para que vuelvas a moverte como antes (o mejor).",
       icon: FaHeartbeat,
       price: "",
@@ -122,10 +122,22 @@ const Services = () => {
   ]
 
   const handleWhatsAppClick = (serviceName) => {
-    const phoneNumber = "56963352063"
+    const phoneNumber = "56963352063" // Formato: código país + número sin +
     const message = `Hola! Me interesa el servicio de ${serviceName}. ¿Podrías darme más información?`
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-    window.open(url, '_blank')
+    
+    // Debug: log the URL to console
+    console.log('WhatsApp URL:', url)
+    console.log('Service name:', serviceName)
+    
+    // Try to open WhatsApp
+    try {
+      window.open(url, '_blank')
+    } catch (error) {
+      console.error('Error opening WhatsApp:', error)
+      // Fallback: try direct link
+      window.location.href = url
+    }
   }
 
   const handleScheduleClick = () => {
@@ -144,20 +156,20 @@ const Services = () => {
   }
 
   return (
-    <section id="servicios" className="section-padding bg-white">
+    <section id="servicios" className="py-6 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="container-max">
         {/* Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-6 shadow-lg">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-4 shadow-lg">
             <span className="mr-2">⚡</span>
             Cómo trabajo
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
             ¿Sigues entrenando con{' '}
             <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">dolor</span>
             {' '}o dejaste todo tirado?
           </h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+          <p className="text-gray-600 text-base max-w-2xl mx-auto">
             Aquí no hay atajos ni promesas vacías. Solo trabajo real para que te muevas mejor, entrenes sin miedo y rindas como querés.
           </p>
         </div>
@@ -189,8 +201,8 @@ const Services = () => {
                 )}
                 
                 {/* Floating Elements */}
-                <div className="absolute -top-2 -left-2 w-16 h-16 bg-green-100 rounded-full opacity-20 group-hover:scale-125 transition-transform duration-500"></div>
-                <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-gray-100 rounded-full opacity-30 group-hover:scale-110 transition-transform duration-500"></div>
+                <div className="absolute -top-2 -left-2 w-16 h-16 bg-green-100 rounded-full opacity-20 group-hover:scale-125 transition-transform duration-500 pointer-events-none"></div>
+                <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-gray-100 rounded-full opacity-30 group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
                 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col h-full">
@@ -203,7 +215,7 @@ const Services = () => {
                     <IconComponent className="text-white text-2xl" />
                   </div>
                   
-                  <h3 className="text-lg font-bold text-black mb-3 group-hover:text-gray-800 transition-colors">
+                  <h3 className="text-lg font-bold text-black mb-3 group-hover:text-gray-800 transition-colors text-center">
                     {service.title}
                   </h3>
                   
@@ -236,20 +248,20 @@ const Services = () => {
         </div>
 
         {/* Cierre Final */}
-        <div className="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-12 text-center shadow-2xl">
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+        <div className="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-8 text-center shadow-2xl mt-12 mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Ya sabés lo que necesitás. <br className="hidden md:block"/>
             Ahora solo falta que lo hagas.
           </h3>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-300 text-base mb-6 max-w-2xl mx-auto">
             No vas a cambiar nada esperando el momento perfecto. Ese momento no existe. 
             <br/>Escribime ahora y empezamos.
           </p>
           <button 
             onClick={() => handleWhatsAppClick('un servicio')}
-            className="bg-green-600 hover:bg-green-700 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-300 text-lg flex items-center justify-center gap-3 mx-auto shadow-xl transform hover:scale-105"
+            className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 text-base flex items-center justify-center gap-3 mx-auto shadow-xl transform hover:scale-105"
           >
-            <FaWhatsapp className="text-2xl" />
+            <FaWhatsapp className="text-xl" />
             Hablemos por WhatsApp
           </button>
         </div>
@@ -363,7 +375,7 @@ const Services = () => {
                       handleWhatsAppClick(selectedService.title)
                       closeModal()
                     }}
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-4 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-4 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg text-sm"
                   >
                     <FaWhatsapp />
                     {selectedService.id === 1 && 'Escríbeme por WhatsApp'}
@@ -377,7 +389,7 @@ const Services = () => {
                         handleScheduleClick()
                         closeModal()
                       }}
-                      className="flex-1 bg-black hover:bg-gray-800 text-white font-medium py-4 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+                      className="flex-1 bg-black hover:bg-gray-800 text-white font-medium py-4 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg text-sm"
                     >
                       <FaCalendarAlt />
                       Reserva tu cupo (Gratis)

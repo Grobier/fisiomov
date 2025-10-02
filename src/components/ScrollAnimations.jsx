@@ -147,6 +147,15 @@ const ScrollAnimations = () => {
         transition: all 0.3s ease;
       }
       
+      /* Ensure animations don't interfere with interactive elements */
+      .animate-ping,
+      .animate-bounce,
+      .scroll-indicator,
+      .rounded-full[class*="absolute"],
+      .rounded-full[class*="fixed"] {
+        pointer-events: none;
+      }
+      
       /* Header scroll effect */
       header.scrolled {
         background-color: rgba(255, 255, 255, 0.95);
@@ -205,6 +214,19 @@ const ScrollAnimations = () => {
         
         .hover-lift:hover {
           transform: translateY(-4px);
+        }
+        
+        /* Ensure scroll animations don't interfere with interactive elements */
+        .scroll-indicator,
+        .animate-ping,
+        .animate-bounce {
+          z-index: -1;
+          pointer-events: none;
+        }
+        
+        /* Ensure WhatsApp button stays on top */
+        .whatsapp-float {
+          z-index: 9999 !important;
         }
       }
       

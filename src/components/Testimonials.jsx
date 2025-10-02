@@ -104,10 +104,10 @@ const Testimonials = () => {
   ]
 
   return (
-    <section id="testimonios" className="section-padding bg-white">
+    <section id="testimonios" className="py-6 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="container-max">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-8">
           <div className="inline-flex items-center bg-gradient-to-r from-slate-700 to-slate-900 text-white px-6 py-2 rounded-full text-sm font-medium mb-6 shadow-lg">
             <span className="mr-2">⭐</span>
             Historias reales
@@ -145,34 +145,29 @@ const Testimonials = () => {
                     className="relative bg-slate-800 rounded-lg overflow-hidden aspect-video group cursor-pointer" 
                     onClick={() => setPlayingVideo(testimonial.id)}
                   >
-                    <img 
-                      src={testimonial.image}
-                      alt={`Video testimonio ${testimonial.name}`}
-                      className="w-full h-full object-cover opacity-60"
-                      onError={(e) => {
-                        e.target.style.display = 'none'
-                        e.target.nextSibling.style.display = 'flex'
-                      }}
-                    />
-                    {/* Fallback background */}
-                    <div className="hidden w-full h-full bg-slate-800 items-center justify-center">
-                      <div className="text-white text-center">
-                        <FaPlay className="text-4xl mx-auto mb-4" />
-                        <p className="text-lg">Video Testimonio</p>
-                      </div>
-                    </div>
+                    {/* Video thumbnail - muestra el video directamente */}
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`${testimonial.videoUrl}?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1`}
+                      title={`Testimonio de ${testimonial.name}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full pointer-events-none"
+                    ></iframe>
                     
                     {/* Play button overlay */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-slate-700 bg-opacity-80 rounded-full flex items-center justify-center group-hover:bg-opacity-100 transition-all duration-300 group-hover:scale-110">
+                      <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center group-hover:bg-red-700 transition-all duration-300 group-hover:scale-110 shadow-lg">
                         <FaPlay className="text-white text-xl ml-1" />
                       </div>
                     </div>
                     
                     {/* Patient info overlay */}
-                    <div className="absolute bottom-3 left-3 text-white">
+                    <div className="absolute bottom-3 left-3 text-white bg-black bg-opacity-70 px-3 py-2 rounded-lg">
                       <p className="font-medium text-sm">{testimonial.name}</p>
-                      <p className="text-xs opacity-80">{testimonial.sport}</p>
+                      <p className="text-xs opacity-90">{testimonial.sport}</p>
                     </div>
                   </div>
                 )}

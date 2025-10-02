@@ -8,7 +8,7 @@ const Benefits = () => {
       title: "Recuperación Rápida",
       description: "Acelera tu proceso de rehabilitación con tratamientos personalizados y seguimiento continuo de tu progreso.",
       icon: FaClock,
-      gradient: "from-green-400 to-emerald-500",
+      gradient: "from-blue-500 to-blue-600",
       stats: "50% más rápido",
       emoji: "⚡"
     },
@@ -17,7 +17,7 @@ const Benefits = () => {
       title: "Prevención de Recaídas",
       description: "Fortalece tu cuerpo y aprende técnicas que te ayudarán a evitar futuras lesiones y mantener tu salud a largo plazo.",
       icon: FaShieldAlt,
-      gradient: "from-purple-400 to-pink-500",
+      gradient: "from-blue-500 to-blue-600",
       stats: "80% menos recaídas",
       emoji: "🛡️"
     },
@@ -26,7 +26,7 @@ const Benefits = () => {
       title: "Mejora del Rendimiento",
       description: "Optimiza tu capacidad física y deportiva con programas diseñados para potenciar tu rendimiento al máximo.",
       icon: FaTrophy,
-      gradient: "from-yellow-400 to-orange-500",
+      gradient: "from-blue-500 to-blue-600",
       stats: "40% mejor rendimiento",
       emoji: "🏆"
     },
@@ -35,17 +35,17 @@ const Benefits = () => {
       title: "Confianza al Entrenar",
       description: "Recupera la seguridad en ti mismo y vuelve a disfrutar del deporte sin miedo a lesionarte nuevamente.",
       icon: FaHeart,
-      gradient: "from-red-400 to-pink-500",
+      gradient: "from-blue-500 to-blue-600",
       stats: "90% más confianza",
       emoji: "💪"
     }
   ]
 
   return (
-    <section id="beneficios" className="section-padding bg-gray-50">
+    <section id="beneficios" className="py-6 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="container-max">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-8">
           <h2 className="text-4xl md:text-5xl font-extralight text-black mb-4 tracking-tight">
             Beneficios
           </h2>
@@ -65,8 +65,8 @@ const Benefits = () => {
                 <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}></div>
                 
                 {/* Floating Elements */}
-                <div className="absolute -top-2 -right-2 w-16 h-16 bg-gray-50 rounded-full opacity-20 group-hover:scale-125 transition-transform duration-500"></div>
-                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gray-100 rounded-full opacity-30 group-hover:scale-110 transition-transform duration-500"></div>
+                <div className="absolute -top-2 -right-2 w-16 h-16 bg-gray-50 rounded-full opacity-20 group-hover:scale-125 transition-transform duration-500 pointer-events-none"></div>
+                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gray-100 rounded-full opacity-30 group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
                 
                 {/* Content */}
                 <div className="relative z-10">

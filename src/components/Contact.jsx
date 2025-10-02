@@ -101,10 +101,10 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contacto" className="section-padding bg-white">
+    <section id="contacto" className="py-6 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="container-max">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-8">
           <div className="inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-6 shadow-lg">
             <span className="mr-2">🚀</span>
             ¡Comienza hoy!
@@ -125,8 +125,8 @@ const Contact = () => {
             {/* Schedule Card */}
             <div className="group relative bg-gradient-to-br from-black to-gray-800 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
               {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-white bg-opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-white bg-opacity-5 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-white bg-opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500 pointer-events-none"></div>
+              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-white bg-opacity-5 rounded-full group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
               
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -166,8 +166,8 @@ const Contact = () => {
             {/* WhatsApp Card */}
             <div className="group relative bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
               {/* Floating Elements */}
-              <div className="absolute -top-4 -left-4 w-20 h-20 bg-white bg-opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
-              <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-white bg-opacity-5 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+              <div className="absolute -top-4 -left-4 w-20 h-20 bg-white bg-opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500 pointer-events-none"></div>
+              <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-white bg-opacity-5 rounded-full group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
               
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
