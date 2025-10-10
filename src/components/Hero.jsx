@@ -18,7 +18,7 @@ const Hero = () => {
   return (
     <>
       {/* Banner con imagen - Full width */}
-      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-8 md:-mt-16">
+      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-8 md:mt-16">
         <BannerSection />
       </div>
       
@@ -199,7 +199,7 @@ function BannerSection() {
       />
       
       {/* Contenido del banner */}
-      <div className="absolute top-[46%] md:bottom-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-1/2 md:transform md:-translate-x-1/2 z-10">
+      <div className="absolute top-[46%] md:top-[77%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
         <div className="text-center px-4 md:px-6">
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
