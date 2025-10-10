@@ -181,13 +181,14 @@ function BannerSection() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative w-full h-auto min-h-[400px] max-h-[800px] overflow-hidden"
+      className="relative w-full h-auto min-h-[400px] max-h-[800px] overflow-hidden bg-white"
     >
       {/* Imagen de fondo */}
       <img
-        src="/images/banner/FISIOMOV RECOVERY.png"
+        src="/images/banner/fisiomov-recovery-banner.png"
         alt="FISIOMOV RECOVERY Banner"
         className="w-full h-auto object-contain bg-white"
+        style={{ display: 'block', maxWidth: '100%' }}
       />
       
       {/* Contenido del banner */}
