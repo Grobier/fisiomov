@@ -18,14 +18,14 @@ const Hero = () => {
   return (
     <>
       {/* Banner con imagen - Full width */}
-      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] pt-16">
+      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-8 md:-mt-16">
         <BannerSection />
       </div>
       
       <section className="relative isolate overflow-hidden min-h-[92vh] bg-white">
         <AnimatedBlobs />
 
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 pt-24 pb-32 lg:grid lg:grid-cols-12 lg:gap-8 lg:pt-28">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 pt-8 pb-32 lg:grid lg:grid-cols-12 lg:gap-8 lg:pt-12">
         {/* Texto */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -181,19 +181,26 @@ function BannerSection() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative w-full h-auto min-h-[400px] max-h-[800px] overflow-hidden bg-white"
+      className="relative w-full overflow-hidden bg-white pt-16 md:pt-0"
     >
-      {/* Imagen de fondo */}
+      {/* Imagen de fondo - Desktop */}
       <img
-        src="/images/banner/fisiomov-recovery-banner.png"
+        src="/images/banner/FISIOMOV RECOVERY.png"
         alt="FISIOMOV RECOVERY Banner"
-        className="w-full h-auto object-contain bg-white"
-        style={{ display: 'block', maxWidth: '100%' }}
+        className="hidden md:block w-full h-auto object-contain bg-white max-w-full"
+      />
+      
+      {/* Imagen de fondo - Mobile */}
+      <img
+        src="/images/banner/FISIOMOV RECOVERY  mobile .png"
+        alt="FISIOMOV RECOVERY Banner Mobile"
+        className="block md:hidden w-full h-auto object-contain bg-white max-w-full"
+        style={{ minHeight: '300px' }}
       />
       
       {/* Contenido del banner */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="text-center px-6">
+      <div className="absolute top-[46%] md:bottom-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-1/2 md:transform md:-translate-x-1/2 z-10">
+        <div className="text-center px-4 md:px-6">
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ 
@@ -220,7 +227,7 @@ function BannerSection() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleSecureSpot}
-            className="text-white font-bold py-4 px-8 rounded-lg text-lg shadow-2xl hover:shadow-red-500/50 transition-all duration-300"
+            className="text-white font-bold py-3 px-7 md:py-4 md:px-8 rounded-lg text-base md:text-lg shadow-2xl hover:shadow-red-500/50 transition-all duration-300"
           >
             VER OFERTA
           </motion.button>
