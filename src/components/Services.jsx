@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { FaHeartbeat, FaLaptop, FaDumbbell, FaSpa, FaGraduationCap, FaWhatsapp, FaCalendarAlt, FaTimes, FaClock, FaTag, FaCheckCircle } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const navigate = useNavigate()
 
   const services = [
     {
@@ -227,7 +229,12 @@ const Services = () => {
                     <button 
                       onClick={(e) => {
                         e.stopPropagation()
-                        handleServiceClick(service)
+                        if (service.title === "Recovery") {
+                          navigate('/recovery')
+                          window.scrollTo(0, 0)
+                        } else {
+                          handleServiceClick(service)
+                        }
                       }}
                       className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-5 rounded-2xl transition-all duration-300 text-sm tracking-wide w-full flex items-center justify-center gap-2 transform hover:scale-105 hover:shadow-xl"
                     >

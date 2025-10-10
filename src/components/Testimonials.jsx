@@ -39,6 +39,22 @@ const Testimonials = () => {
     },
     {
       id: 3,
+      name: "Cristóbal",
+      age: 28,
+      sport: "Evaluación Kinesiológica",
+      injury: "Evaluación completa",
+      image: "/testimonial-cristobal.jpg",
+      rating: 5,
+      text: "La evaluación kinesiológica fue increíble. Me ayudó a entender exactamente qué estaba pasando con mi cuerpo y cómo mejorar mi movimiento. El profesionalismo y la atención al detalle fueron excepcionales.",
+      result: "Comprensión completa de su condición",
+      beforeAfter: {
+        before: "Dudas sobre su condición física",
+        after: "Claridad total y plan de acción"
+      },
+      videoUrl: "https://www.youtube.com/embed/7NhPS78RI50"
+    },
+    {
+      id: 4,
       name: "Ana Rodríguez",
       age: 42,
       sport: "Fitness",

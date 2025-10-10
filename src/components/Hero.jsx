@@ -16,8 +16,14 @@ const Hero = () => {
   }
 
   return (
-    <section className="relative isolate overflow-hidden min-h-[92vh] bg-white">
-      <AnimatedBlobs />
+    <>
+      {/* Banner con imagen - Full width */}
+      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] pt-16">
+        <BannerSection />
+      </div>
+      
+      <section className="relative isolate overflow-hidden min-h-[92vh] bg-white">
+        <AnimatedBlobs />
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8 pt-24 pb-32 lg:grid lg:grid-cols-12 lg:gap-8 lg:pt-28">
         {/* Texto */}
@@ -31,8 +37,8 @@ const Hero = () => {
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="mt-4 text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl leading-tight"
-            style={{ fontFamily: 'Anton, sans-serif' }}
+            className="mt-4 text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl leading-tight uppercase"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
           >
             {"Tu dolor no es "}
             <Typewriter word="normal" speed={80} />
@@ -106,6 +112,7 @@ const Hero = () => {
         </div>
       </motion.div>
     </section>
+    </>
   );
 }
 
@@ -163,6 +170,64 @@ function AnimatedBlobs() {
   );
 }
 
+
+function BannerSection() {
+  const handleSecureSpot = () => {
+    window.location.href = '/recovery'
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="relative w-full h-auto min-h-[400px] max-h-[800px] overflow-hidden"
+    >
+      {/* Imagen de fondo */}
+      <img
+        src="/images/banner/FISIOMOV RECOVERY.png"
+        alt="FISIOMOV RECOVERY Banner"
+        className="w-full h-auto object-contain bg-white"
+      />
+      
+      {/* Contenido del banner */}
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="text-center px-6">
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ 
+              opacity: 1, 
+              scale: [1, 1.08, 1],
+              boxShadow: [
+                "0 25px 50px -12px rgba(239, 68, 68, 0.3)",
+                "0 35px 70px -12px rgba(239, 68, 68, 0.6)",
+                "0 25px 50px -12px rgba(239, 68, 68, 0.3)"
+              ],
+              background: [
+                "linear-gradient(to right, #dc2626, #b91c1c)",
+                "linear-gradient(to right, #ef4444, #dc2626)",
+                "linear-gradient(to right, #dc2626, #b91c1c)"
+              ]
+            }}
+            transition={{ 
+              delay: 0.7, 
+              duration: 0.8,
+              scale: { repeat: Infinity, duration: 1.5, ease: "easeInOut" },
+              boxShadow: { repeat: Infinity, duration: 1.5, ease: "easeInOut" },
+              background: { repeat: Infinity, duration: 1.5, ease: "easeInOut" }
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleSecureSpot}
+            className="text-white font-bold py-4 px-8 rounded-lg text-lg shadow-2xl hover:shadow-red-500/50 transition-all duration-300"
+          >
+            VER OFERTA
+          </motion.button>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 function VisualCard() {
   return (
