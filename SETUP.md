@@ -1,4 +1,4 @@
-# Guía de Configuración FISIOMOV
+# Guía de Configuración FISIOMOVE
 
 ## 📋 Lista de Verificación Pre-Deploy
 
@@ -26,7 +26,7 @@ npm install
 1. Ve a Configuración del proyecto (ícono de engranaje)
 2. En la pestaña "General", baja hasta "Tus apps"
 3. Haz clic en "Agregar app" y selecciona "Web"
-4. Registra la app con nombre "FISIOMOV Landing"
+4. Registra la app con nombre "FISIOMOVE Landing"
 5. Copia la configuración de Firebase
 
 #### Actualizar Configuración:
@@ -69,7 +69,7 @@ Edita `index.html` línea 31:
 1. Ve a [Meta Business Manager](https://business.facebook.com)
 2. Ve a "Herramientas de eventos" > "Píxeles"
 3. Haz clic en "Crear un píxel"
-4. Nombra tu píxel "FISIOMOV Landing"
+4. Nombra tu píxel "FISIOMOVE Landing"
 5. Copia el Pixel ID
 
 #### Actualizar Código:
