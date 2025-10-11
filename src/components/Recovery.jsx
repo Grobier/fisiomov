@@ -60,7 +60,7 @@ const Recovery = () => {
               <ArrowLeft className="w-5 h-5 mr-2" />
               Volver
             </button>
-            <h1 className="text-2xl font-bold text-gray-900">FISIOMOV RECOVERY</h1>
+            <h1 className="text-2xl font-bold text-gray-900">FISIOMOVE RECOVERY</h1>
             <div className="w-20"></div> {/* Spacer */}
           </div>
         </div>
@@ -159,7 +159,7 @@ const Recovery = () => {
                       <iframe
                         className="w-full h-full"
                         src="https://www.youtube.com/embed/ZCMvj5FOS44?rel=0&modestbranding=1&showinfo=0"
-                        title="Testimonio Recovery - FISIOMOV"
+                        title="Testimonio Recovery - FISIOMOVEE"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen

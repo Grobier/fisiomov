@@ -13,7 +13,7 @@ const Testimonials = () => {
       injury: "Recuperación muscular",
       image: "/testimonial-fran.jpg",
       rating: 5,
-      text: "El servicio de Recovery de FISIOMOV ha sido fundamental en mi proceso de recuperación. Las sesiones con masaje, pistola de percusión y sauna me han ayudado a recuperarme más rápido y entrenar sin dolor.",
+      text: "El servicio de Recovery de FISIOMOVE ha sido fundamental en mi proceso de recuperación. Las sesiones con masaje, pistola de percusión y sauna me han ayudado a recuperarme más rápido y entrenar sin dolor.",
       result: "Recuperación muscular óptima",
       beforeAfter: {
         before: "Dolor y tensión muscular constante",
@@ -29,7 +29,7 @@ const Testimonials = () => {
       injury: "Desgarro muscular",
       image: "/testimonial-carlos.jpg",
       rating: 5,
-      text: "El tratamiento fue excepcional. Tuve un desgarro en el isquiotibial y pensé que no volvería a jugar fútbol. El kinesiólogo de FISIOMOV no solo me recuperó físicamente, sino que me dio la confianza para volver a la cancha sin miedo.",
+      text: "El tratamiento fue excepcional. Tuve un desgarro en el isquiotibial y pensé que no volvería a jugar fútbol. El kinesiólogo de FISIOMOVE no solo me recuperó físicamente, sino que me dio la confianza para volver a la cancha sin miedo.",
       result: "Regresó al fútbol competitivo",
       beforeAfter: {
         before: "Dolor constante al caminar",
@@ -61,7 +61,7 @@ const Testimonials = () => {
       injury: "Dolor lumbar crónico",
       image: "/testimonial-ana.jpg",
       rating: 5,
-      text: "Llevaba años con dolor lumbar que limitaba todas mis actividades. Los ejercicios personalizados y las técnicas de FISIOMOV me cambiaron la vida. Ahora puedo entrenar sin dolor y he mejorado mi postura completamente.",
+      text: "Llevaba años con dolor lumbar que limitaba todas mis actividades. Los ejercicios personalizados y las técnicas de FISIOMOVE me cambiaron la vida. Ahora puedo entrenar sin dolor y he mejorado mi postura completamente.",
       result: "Eliminó el dolor lumbar crónico",
       beforeAfter: {
         before: "Dolor diario nivel 7/10",
@@ -70,7 +70,7 @@ const Testimonials = () => {
       videoUrl: "https://www.youtube.com/embed/example3"
     },
     {
-      id: 4,
+      id: 5,
       name: "Diego Silva",
       age: 24,
       sport: "Ciclismo",
@@ -86,14 +86,14 @@ const Testimonials = () => {
       videoUrl: "https://www.youtube.com/embed/example4"
     },
     {
-      id: 5,
+      id: 6,
       name: "Patricia López",
       age: 38,
       sport: "Yoga/Pilates",
       injury: "Lesión de hombro",
       image: "/testimonial-patricia.jpg",
       rating: 5,
-      text: "Mi lesión de hombro me impedía hacer las posturas que más amaba en yoga. El enfoque integral de FISIOMOV, combinando terapia manual con ejercicios específicos, me devolvió la movilidad completa. Ahora soy instructora de yoga sin limitaciones.",
+      text: "Mi lesión de hombro me impedía hacer las posturas que más amaba en yoga. El enfoque integral de FISIOMOVE, combinando terapia manual con ejercicios específicos, me devolvió la movilidad completa. Ahora soy instructora de yoga sin limitaciones.",
       result: "Recuperó movilidad completa del hombro",
       beforeAfter: {
         before: "Movilidad limitada a 90 grados",
@@ -101,22 +101,6 @@ const Testimonials = () => {
       },
       videoUrl: "https://www.youtube.com/embed/example5"
     },
-    {
-      id: 6,
-      name: "Roberto Martínez",
-      age: 28,
-      sport: "Crossfit",
-      injury: "Lesión de muñeca",
-      image: "/testimonial-roberto.jpg",
-      rating: 5,
-      text: "Mi lesión de muñeca me tenía fuera del box por meses. El tratamiento de FISIOMOV fue integral: rehabilitación específica, ejercicios de fortalecimiento y técnicas de prevención. Ahora no solo puedo hacer todos los movimientos, sino que mi técnica mejoró significativamente.",
-      result: "Regresó al Crossfit con mejor técnica",
-      beforeAfter: {
-        before: "No podía hacer flexiones ni dominadas",
-        after: "Completa WODs sin dolor, técnica mejorada"
-      },
-      videoUrl: "https://www.youtube.com/embed/example6"
-    }
   ]
 
   return (

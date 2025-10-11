@@ -40,7 +40,7 @@ const Header = () => {
           <div className="flex items-center">
             <img 
               src="/logo-fisiomov.png" 
-              alt="FISIOMOV Logo" 
+              alt="FISIOMOVE Logo" 
               className="h-10 w-auto"
               onError={(e) => {
                 e.target.style.display = 'none'
@@ -48,7 +48,7 @@ const Header = () => {
               }}
             />
             <div className="hidden text-2xl font-bold text-primary-600">
-              FISIOMOV
+              FISIOMOVE
             </div>
           </div>
 
