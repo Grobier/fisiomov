@@ -6,7 +6,7 @@ const Footer = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "56963352063"
-    const message = "Hola! Me interesa conocer más sobre FISIOMOV"
+    const message = "Hola! Me interesa conocer más sobre FISIOMOVEE"
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
   }
@@ -44,7 +44,7 @@ const Footer = () => {
             <div className="flex items-center mb-6">
               <img 
                 src="/logo-fisiomov-white.png" 
-                alt="FISIOMOV Logo" 
+                alt="FISIOMOVEE Logo" 
                 className="h-8 w-auto mr-3"
                 onError={(e) => {
                   e.target.style.display = 'none'
@@ -52,7 +52,7 @@ const Footer = () => {
                 }}
               />
               <div className="hidden text-2xl font-bold text-white">
-                FISIOMOV
+                FISIOMOVEE
               </div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -183,7 +183,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
               <p>
-                © {currentYear} FISIOMOV. Todos los derechos reservados. 
+                © {currentYear} FISIOMOVEE. Todos los derechos reservados. 
                 Hecho con <FaHeart className="inline text-red-500 mx-1" /> para tu bienestar.
               </p>
             </div>

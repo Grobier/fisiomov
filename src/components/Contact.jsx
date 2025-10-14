@@ -33,7 +33,7 @@ const Contact = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "56963352063"
-    const message = "Hola! Me interesa agendar una consulta con FISIOMOV. ¿Podrías ayudarme?"
+    const message = "Hola! Me interesa agendar una consulta con FISIOMOVEE. ¿Podrías ayudarme?"
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
   }

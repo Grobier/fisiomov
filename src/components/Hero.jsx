@@ -18,7 +18,7 @@ const Hero = () => {
   return (
     <>
       {/* Banner con imagen - Full width */}
-      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-8 md:mt-16">
+      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-0 mb-8">
         <BannerSection />
       </div>
       
@@ -181,21 +181,21 @@ function BannerSection() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative w-full overflow-hidden bg-white pt-16 md:pt-0"
+      className="relative w-full overflow-hidden bg-white pt-20 md:pt-8"
     >
       {/* Imagen de fondo - Desktop */}
       <img
         src="/images/banner/FISIOMOV RECOVERY.png"
         alt="FISIOMOV RECOVERY Banner"
-        className="hidden md:block w-full h-auto object-contain bg-white max-w-full"
+        className="hidden md:block w-full h-auto object-cover bg-white max-w-full"
       />
       
       {/* Imagen de fondo - Mobile */}
       <img
         src="/images/banner/FISIOMOV RECOVERY  mobile .png"
         alt="FISIOMOV RECOVERY Banner Mobile"
-        className="block md:hidden w-full h-auto object-contain bg-white max-w-full"
-        style={{ minHeight: '300px' }}
+        className="block md:hidden w-full h-auto object-cover bg-white max-w-full"
+        style={{ minHeight: '400px' }}
       />
       
       {/* Contenido del banner */}
@@ -231,6 +231,25 @@ function BannerSection() {
           >
             VER OFERTA
           </motion.button>
+        </div>
+      </div>
+      
+      {/* Franja azul inferior con mensaje */}
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-blue-700 py-3 md:py-4">
+        <div className="text-center px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4"
+          >
+            <p className="text-white text-sm md:text-base font-semibold">
+              ⚡ Aprovecha esta oportunidad única
+            </p>
+            <p className="text-white/90 text-xs md:text-sm">
+              Los valores subirán después del Cyberday
+            </p>
+          </motion.div>
         </div>
       </div>
     </motion.div>
