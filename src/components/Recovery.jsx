@@ -117,15 +117,6 @@ const Recovery = () => {
             Reserva tu sesión
           </motion.button>
 
-          {/* Texto de oferta */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0 }}
-            className="text-sm text-gray-600"
-          >
-            Oferta válida hasta el <span className="text-blue-600 font-semibold">11 de octubre</span>
-          </motion.p>
         </div>
       </motion.section>
 
