@@ -120,6 +120,77 @@ const Recovery = () => {
         </div>
       </motion.section>
 
+      {/* Educational Video Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="py-16 bg-white"
+      >
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8"
+          >
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Cómo el Sauna Aumenta tu Estado Físico
+            </h2>
+            <p className="text-lg text-gray-600">
+              Descubre los beneficios científicos del sauna para tu rendimiento y recuperación
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="relative bg-white rounded-2xl shadow-2xl overflow-hidden"
+          >
+            {/* Video container */}
+            <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/USoDC7SLTT8?start=518&rel=0&modestbranding=1&showinfo=0"
+                title="Cómo el Sauna Aumenta tu Estado Físico"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            {/* Video overlay info */}
+            <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2">
+              <div className="flex items-center gap-2 text-white">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                <span className="text-sm font-medium">Beneficios del Sauna</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Call to action después del video educativo */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-8"
+          >
+            <p className="text-gray-600 mb-4">
+              ¿Quieres experimentar estos beneficios en tu propio cuerpo?
+            </p>
+            <button
+              onClick={() => handleWhatsAppClick('default')}
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Reserva tu sesión de sauna
+            </button>
+          </motion.div>
+        </div>
+      </motion.section>
+
       {/* Video Testimonial Section */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
@@ -548,7 +619,7 @@ const Recovery = () => {
                 )}
                 <button
                   onClick={() => handleWhatsAppClick(service.buttonAction)}
-                  className={`w-full py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-300 ${service.mostPopular ? 'mt-6' : 'mt-auto'} whitespace-nowrap ${
+                  className={`w-full py-3 px-2 rounded-lg font-semibold text-xs transition-all duration-300 ${service.mostPopular ? 'mt-6' : 'mt-auto'} ${
                     service.highlight
                       ? 'bg-white text-red-600 hover:bg-gray-100'
                       : service.mostPopular
