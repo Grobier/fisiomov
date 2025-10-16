@@ -7,6 +7,17 @@ const Services = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const navigate = useNavigate()
 
+  // Función para enviar eventos a Google Analytics
+  const trackEvent = (eventName, eventCategory, eventLabel, value = 1) => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, {
+        event_category: eventCategory,
+        event_label: eventLabel,
+        value: value
+      });
+    }
+  };
+
   const services = [
     {
       id: 1,
@@ -124,6 +135,7 @@ const Services = () => {
   ]
 
   const handleWhatsAppClick = (serviceName) => {
+    trackEvent('click', 'whatsapp_button', `services_${serviceName.toLowerCase().replace(/\s+/g, '_')}`, 1);
     const phoneNumber = "56963352063" // Formato: código país + número sin +
     const message = `Hola! Me interesa el servicio de ${serviceName}. ¿Podrías darme más información?`
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
@@ -143,16 +155,19 @@ const Services = () => {
   }
 
   const handleScheduleClick = () => {
+    trackEvent('click', 'calendar_button', 'services_calendar', 1);
     const calendarUrl = "https://calendar.app.google/ofAAA1auXWNjXKh59"
     window.open(calendarUrl, '_blank')
   }
 
   const handleServiceClick = (service) => {
+    trackEvent('click', 'service_card', service.title.toLowerCase().replace(/\s+/g, '_'), 1);
     setSelectedService(service)
     setIsModalOpen(true)
   }
 
   const closeModal = () => {
+    trackEvent('click', 'modal_interaction', 'close_service_modal', 1);
     setIsModalOpen(false)
     setSelectedService(null)
   }

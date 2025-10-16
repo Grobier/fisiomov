@@ -3,7 +3,19 @@ import { motion } from "framer-motion";
 import { ChevronRight, Phone, MessageCircle } from "lucide-react";
 
 const Hero = () => {
+  // Función para enviar eventos a Google Analytics
+  const trackEvent = (eventName, eventCategory, eventLabel, value = 1) => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, {
+        event_category: eventCategory,
+        event_label: eventLabel,
+        value: value
+      });
+    }
+  };
+
   const handleWhatsAppClick = () => {
+    trackEvent('click', 'whatsapp_button', 'hero_whatsapp', 1);
     const phoneNumber = "56963352063"
     const message = "Hola! Quiero dejar de entrenar con dolor. ¿Cuándo podemos empezar?"
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
@@ -11,6 +23,7 @@ const Hero = () => {
   }
 
   const handleScheduleClick = () => {
+    trackEvent('click', 'calendar_button', 'hero_calendar', 1);
     const calendarUrl = "https://calendar.app.google/ofAAA1auXWNjXKh59"
     window.open(calendarUrl, '_blank')
   }
@@ -172,7 +185,19 @@ function AnimatedBlobs() {
 
 
 function BannerSection() {
+  // Función para enviar eventos a Google Analytics
+  const trackEvent = (eventName, eventCategory, eventLabel, value = 1) => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, {
+        event_category: eventCategory,
+        event_label: eventLabel,
+        value: value
+      });
+    }
+  };
+
   const handleSecureSpot = () => {
+    trackEvent('click', 'banner_button', 'ver_oferta', 1);
     window.location.href = '/recovery'
   }
 

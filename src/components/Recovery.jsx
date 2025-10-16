@@ -12,7 +12,19 @@ const Recovery = () => {
     window.scrollTo(0, 0);
   }, []);
   
+  // Función para enviar eventos a Google Analytics
+  const trackEvent = (eventName, eventCategory, eventLabel, value = 1) => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, {
+        event_category: eventCategory,
+        event_label: eventLabel,
+        value: value
+      });
+    }
+  };
+  
   const handleBackClick = () => {
+    trackEvent('click', 'navigation', 'home_button', 1);
     navigate('/');
   };
 
@@ -42,6 +54,9 @@ const Recovery = () => {
       default:
         message = "Hola! Quiero reservar una sesión. ¿Cuándo podemos agendar?"
     }
+    
+    // Enviar evento a Google Analytics
+    trackEvent('click', 'whatsapp_button', serviceName, 1);
     
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
@@ -301,7 +316,10 @@ const Recovery = () => {
                 />
                 {/* Botón para ampliar imagen */}
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => {
+                    trackEvent('click', 'image_interaction', 'testimonial_expand', 1);
+                    setIsModalOpen(true);
+                  }}
                   className="absolute top-4 right-4 bg-black/70 hover:bg-black/90 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg"
                   title="Ver imagen completa"
                 >
@@ -680,7 +698,10 @@ const Recovery = () => {
                 Testimonio Completo - Instagram
               </h3>
               <button
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => {
+                  trackEvent('click', 'modal_interaction', 'close_testimonial', 1);
+                  setIsModalOpen(false);
+                }}
                 className="p-2 hover:bg-gray-200 rounded-full transition-colors"
               >
                 <X className="w-5 h-5 text-gray-600" />
