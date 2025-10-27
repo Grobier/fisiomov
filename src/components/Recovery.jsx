@@ -84,54 +84,85 @@ const Recovery = () => {
         </div>
       </motion.div>
 
-      {/* Hero Section */}
+      {/* Hero Section - Minimalist */}
       <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="bg-white py-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="relative bg-white overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          {/* Línea gradiente superior */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-8 rounded-full"
-          ></motion.div>
+        <div className="relative max-w-5xl mx-auto px-6 py-32 md:py-40">
+          <div className="text-center space-y-12">
+            {/* Hero Number */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <div className="inline-block text-9xl md:text-[12rem] font-extralight text-blue-600 leading-none tracking-tighter">
+                60
+              </div>
+              <div className="mt-2 text-sm text-blue-500 uppercase tracking-[0.2em] font-medium">
+                Minutos
+              </div>
+            </motion.div>
 
-          {/* Título principal */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight"
-          >
-            Recupera tu cuerpo después de entrenar
-          </motion.h1>
-          
-          {/* Descripción */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto space-y-2"
-          >
-            <p>Masaje manual, pistola de percusión y sauna en una sola sesión.</p>
-            <p>Relaja tus músculos y mejora tu rendimiento.</p>
-          </motion.div>
-          
-          {/* Botón CTA */}
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            onClick={() => handleWhatsAppClick('default')}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 mb-6"
-          >
-            Reserva tu sesión
-          </motion.button>
+            {/* Main Title */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="space-y-4"
+            >
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight">
+                Recupera tu cuerpo
+                <br />
+                <span className="font-normal text-blue-600">después de entrenar</span>
+              </h1>
+            </motion.div>
 
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+            >
+              Masaje manual, pistola de percusión y sauna en una sola sesión
+            </motion.p>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+              <motion.button
+                whileHover={{ backgroundColor: "#2563eb" }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => handleWhatsAppClick('default')}
+                className="group inline-flex items-center justify-center gap-3 bg-blue-600 text-white font-medium py-4 px-12 text-lg hover:bg-blue-700 transition-colors duration-300"
+              >
+                Reserva tu sesión
+                <svg 
+                  className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </motion.button>
+            </motion.div>
+
+            {/* Divider */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+              className="h-px bg-blue-100 max-w-md mx-auto"
+            />
+          </div>
         </div>
       </motion.section>
 
@@ -418,7 +449,7 @@ const Recovery = () => {
 
       {/* Services Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[1600px] mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -429,34 +460,8 @@ const Recovery = () => {
             <p className="text-xl text-gray-600">Elige el servicio que mejor se adapte a tus necesidades</p>
           </motion.div>
 
-          {/* Cyberday Special Offer */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-blue-600/30 to-blue-700/30 backdrop-blur-sm text-gray-900 rounded-xl p-6 mb-12 shadow-lg border border-blue-200/50"
-          >
-            <div className="text-center">
-              <div className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-blue-200">
-                🔥 CYBERDAY ESPECIAL
-              </div>
-              <h3 className="text-2xl font-bold mb-2">Masaje Manual + Pistola de Percusión + Sauna</h3>
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="text-4xl font-bold">$20.000</div>
-                <div className="text-xl line-through opacity-75">$64.000</div>
-              </div>
-              <p className="text-lg mb-4">¡Ahorras $44.000! Oferta válida solo por Cyberday</p>
-              <button
-                onClick={() => handleWhatsAppClick('cyberday')}
-                className="bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                ¡Aprovechar Oferta!
-              </button>
-            </div>
-          </motion.div>
-
           {/* Plans Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
             {[
               {
                 title: "Sauna Única",
@@ -471,23 +476,6 @@ const Recovery = () => {
                 ],
                 buttonText: "Reservar Sesión",
                 buttonAction: 'sauna_unica'
-              },
-              {
-                title: "CYBERDAY ESPECIAL",
-                subtitle: "Sauna + Masaje + Pistola",
-                price: "$20.000",
-                originalPrice: "$33.000",
-                duration: "60 min",
-                description: "¡Ahorras $13.000! Oferta válida solo por Cyberday",
-                features: [
-                  "Masaje Manual (20 min)",
-                  "Pistola de Percusión (20 min)",
-                  "Sauna (20 min)"
-                ],
-                specialMessage: "¡No volverá a estar así de bajo!",
-                highlight: true,
-                buttonText: "¡Aprovechar Oferta!",
-                buttonAction: 'cyberday'
               },
               {
                 title: "Recovery Único",
@@ -557,7 +545,7 @@ const Recovery = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className={`border rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow flex flex-col relative ${
+                className={`border rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow flex flex-col relative w-full max-w-[240px] ${
                   service.highlight 
                     ? service.packStyle
                       ? 'bg-gradient-to-br from-orange-500 to-red-500 border-orange-400'
@@ -567,12 +555,6 @@ const Recovery = () => {
                       : 'bg-white border-gray-200'
                 }`}
               >
-                {/* Cinta Cyberday */}
-                {service.highlight && (
-                  <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg transform rotate-12 z-10">
-                    🔥 CYBERDAY
-                  </div>
-                )}
                 
                 {/* Cinta Más Popular */}
                 {service.mostPopular && (
@@ -580,8 +562,8 @@ const Recovery = () => {
                     ⭐ MÁS POPULAR
                   </div>
                 )}
-                <div className="text-center mb-4">
-                  <h4 className={`text-lg font-bold mb-1 ${
+                <div className="text-center mb-6">
+                  <h4 className={`text-xl font-bold mb-2 ${
                     service.highlight || service.mostPopular ? 'text-white' : 'text-gray-900'
                   }`}>{service.title}</h4>
                   {service.subtitle && (
@@ -589,8 +571,8 @@ const Recovery = () => {
                       service.highlight ? 'text-white/80' : service.mostPopular ? 'text-white/90' : 'text-blue-600'
                     }`}>{service.subtitle}</p>
                   )}
-                  <div className="flex items-center justify-center gap-2 mb-1">
-                    <div className={`text-2xl font-bold ${
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <div className={`text-3xl font-bold ${
                       service.highlight || service.mostPopular ? 'text-white' : 'text-blue-600'
                     }`}>{service.price}</div>
                     {service.originalPrice && (
@@ -624,17 +606,6 @@ const Recovery = () => {
                   ))}
                 </ul>
                 
-                {/* Mensaje especial destacado para Cyberday */}
-                {service.specialMessage && (
-                  <li className={`flex items-center text-xs mt-3 mb-4 ${
-                    service.highlight ? 'text-yellow-200' : 'text-gray-700'
-                  }`}>
-                    <Star className={`w-3 h-3 mr-2 flex-shrink-0 ${
-                      service.highlight ? 'text-yellow-300' : 'text-yellow-500'
-                    }`} />
-                    <span className="font-semibold text-xs">{service.specialMessage}</span>
-                  </li>
-                )}
                 <button
                   onClick={() => handleWhatsAppClick(service.buttonAction)}
                   className={`w-full py-3 px-2 rounded-lg font-semibold text-xs transition-all duration-300 ${service.mostPopular ? 'mt-6' : 'mt-auto'} ${

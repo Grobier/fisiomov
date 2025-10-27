@@ -29,13 +29,7 @@ const Hero = () => {
   }
 
   return (
-    <>
-      {/* Banner con imagen - Full width */}
-      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-0 mb-8">
-        <BannerSection />
-      </div>
-      
-      <section className="relative isolate overflow-hidden min-h-[92vh] bg-white">
+    <section className="relative isolate overflow-hidden min-h-[92vh] bg-white">
         <AnimatedBlobs />
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8 pt-8 pb-32 lg:grid lg:grid-cols-12 lg:gap-8 lg:pt-12">
@@ -125,7 +119,6 @@ const Hero = () => {
         </div>
       </motion.div>
     </section>
-    </>
   );
 }
 
@@ -183,103 +176,6 @@ function AnimatedBlobs() {
   );
 }
 
-
-function BannerSection() {
-  // Función para enviar eventos a Google Analytics
-  const trackEvent = (eventName, eventCategory, eventLabel, value = 1) => {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', eventName, {
-        event_category: eventCategory,
-        event_label: eventLabel,
-        value: value
-      });
-    }
-  };
-
-  const handleSecureSpot = () => {
-    trackEvent('click', 'banner_button', 'ver_oferta', 1);
-    window.location.href = '/recovery'
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="relative w-full overflow-hidden bg-white pt-20 md:pt-8"
-    >
-      {/* Imagen de fondo - Desktop */}
-      <img
-        src="/images/banner/FISIOMOV RECOVERY.png"
-        alt="FISIOMOV RECOVERY Banner"
-        className="hidden md:block w-full h-auto object-cover bg-white max-w-full"
-      />
-      
-      {/* Imagen de fondo - Mobile */}
-      <img
-        src="/images/banner/FISIOMOV RECOVERY  mobile .png"
-        alt="FISIOMOV RECOVERY Banner Mobile"
-        className="block md:hidden w-full h-auto object-cover bg-white max-w-full"
-        style={{ minHeight: '400px' }}
-      />
-      
-      {/* Contenido del banner */}
-      <div className="absolute top-[46%] md:top-[77%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-        <div className="text-center px-4 md:px-6">
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ 
-              opacity: 1, 
-              scale: [1, 1.08, 1],
-              boxShadow: [
-                "0 25px 50px -12px rgba(239, 68, 68, 0.3)",
-                "0 35px 70px -12px rgba(239, 68, 68, 0.6)",
-                "0 25px 50px -12px rgba(239, 68, 68, 0.3)"
-              ],
-              background: [
-                "linear-gradient(to right, #dc2626, #b91c1c)",
-                "linear-gradient(to right, #ef4444, #dc2626)",
-                "linear-gradient(to right, #dc2626, #b91c1c)"
-              ]
-            }}
-            transition={{ 
-              delay: 0.7, 
-              duration: 0.8,
-              scale: { repeat: Infinity, duration: 1.5, ease: "easeInOut" },
-              boxShadow: { repeat: Infinity, duration: 1.5, ease: "easeInOut" },
-              background: { repeat: Infinity, duration: 1.5, ease: "easeInOut" }
-            }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleSecureSpot}
-            className="text-white font-bold py-3 px-7 md:py-4 md:px-8 rounded-lg text-base md:text-lg shadow-2xl hover:shadow-red-500/50 transition-all duration-300"
-          >
-            VER OFERTA
-          </motion.button>
-        </div>
-      </div>
-      
-      {/* Franja azul inferior con mensaje */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-blue-700 py-3 md:py-4">
-        <div className="text-center px-4 md:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4"
-          >
-            <p className="text-white text-sm md:text-base font-semibold">
-              ⚡ Aprovecha esta oportunidad única
-            </p>
-            <p className="text-white/90 text-xs md:text-sm">
-              Los valores subirán después del Cyberday
-            </p>
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
 
 function VisualCard() {
   return (
