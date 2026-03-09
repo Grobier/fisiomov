@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -53,7 +54,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.name}
@@ -63,6 +64,13 @@ const Header = () => {
                 {item.name}
               </button>
             ))}
+            <Link
+              to="/recursos-gratuitos"
+              className="font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center gap-1"
+            >
+              <span>Recursos Gratis</span>
+              <span className="bg-blue-600 text-white text-xs px-1.5 py-0.5 rounded-full leading-none">GRATIS</span>
+            </Link>
           </div>
 
           {/* CTA Button */}
@@ -99,6 +107,13 @@ const Header = () => {
                   {item.name}
                 </button>
               ))}
+              <Link
+                to="/recursos-gratuitos"
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-2 text-base font-medium text-blue-600 hover:bg-blue-50 rounded-md w-full text-left"
+              >
+                Recursos Gratis
+              </Link>
               <button 
                 onClick={() => window.open('https://calendly.com/grobier/30minutos', '_blank')}
                 className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-3 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full mt-4 flex items-center justify-center gap-2"

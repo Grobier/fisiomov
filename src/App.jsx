@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
 import ScrollAnimations from './components/ScrollAnimations'
 import Recovery from './components/Recovery'
+import FreeAccess from './components/FreeAccess'
 
 function Home() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recovery" element={<Recovery />} />
+        <Route path="/recursos-gratuitos" element={<FreeAccess />} />
       </Routes>
     </div>
   )

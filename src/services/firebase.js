@@ -104,6 +104,33 @@ export const submitServiceInquiry = async (serviceData) => {
   }
 }
 
+// Free access lead registration
+export const registerFreeAccess = async ({ email, name, phone }) => {
+  try {
+    if (!db) {
+      console.log('Simulando registro de acceso gratuito (Firebase no configurado):', { email, name, phone })
+      await new Promise(resolve => setTimeout(resolve, 800))
+      return { success: true, id: 'demo-free-' + Date.now() }
+    }
+
+    const ref = collection(db, 'free_access_leads')
+
+    const docRef = await addDoc(ref, {
+      email,
+      name,
+      phone,
+      registeredAt: serverTimestamp(),
+      status: 'pending',
+      source: 'free_access_section',
+    })
+
+    return { success: true, id: docRef.id }
+  } catch (error) {
+    console.error('Error registering free access:', error)
+    throw error
+  }
+}
+
 // Analytics event tracking
 export const trackEvent = async (eventData) => {
   try {
