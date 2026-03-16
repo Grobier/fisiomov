@@ -52,7 +52,7 @@ const Services = () => {
                 type="button"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.08, duration: 0.35 }}
                 onMouseEnter={() => setActiveServiceId(service.id)}
                 onFocus={() => setActiveServiceId(service.id)}

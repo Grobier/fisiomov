@@ -22,7 +22,7 @@ const FreeResourcesSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
             <span className="inline-flex items-center gap-2 bg-blue-600/20 border border-blue-500/30 text-blue-400 px-4 py-1.5 rounded-full text-xs font-medium mb-6">
@@ -61,7 +61,7 @@ const FreeResourcesSection = () => {
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm"
           >

@@ -13,7 +13,7 @@ const ImpactSection = () => {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.5 }}
             className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"
           >
@@ -23,7 +23,7 @@ const ImpactSection = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mb-6 text-4xl font-extrabold leading-tight text-slate-950 md:text-5xl lg:text-6xl"
           >
@@ -35,7 +35,7 @@ const ImpactSection = () => {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mx-auto mb-4 max-w-xl text-lg text-slate-600"
           >
@@ -45,7 +45,7 @@ const ImpactSection = () => {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.4 }}
             className="mb-10 text-sm text-slate-500"
           >
@@ -55,7 +55,7 @@ const ImpactSection = () => {
           <motion.button
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.5 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

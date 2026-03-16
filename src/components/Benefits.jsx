@@ -36,7 +36,7 @@ const Benefits = () => {
       className="bg-fixed bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_28%),linear-gradient(180deg,#ffffff_0%,#eef4fb_100%)] px-4 py-24 sm:px-6 lg:px-8"
     >
       <div className="relative max-w-7xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14 text-center">
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.3 }} className="mb-14 text-center">
           <span className="section-eyebrow">Por que funciona</span>
           <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">Menos ruido. Mas criterio. Mejor recuperacion.</h2>
           <p className="mx-auto max-w-xl text-base text-slate-600">
@@ -53,7 +53,7 @@ const Benefits = () => {
                 key={benefit.id}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 className="group relative rounded-[28px] border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1"
               >
