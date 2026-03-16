@@ -1,217 +1,89 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ChevronRight, Phone, MessageCircle } from "lucide-react";
+import React from 'react'
+import { motion } from 'framer-motion'
+import { FaWhatsapp } from 'react-icons/fa'
+
+const WHATSAPP_URL = 'https://wa.me/56963352063?text=Hola%20Lorenzo,%20vi%20tu%20web%20y%20me%20gustaria%20saber%20como%20puedes%20ayudarme%20con%20mi%20dolor'
 
 const Hero = () => {
-  // Función para enviar eventos a Google Analytics
   const trackEvent = (eventName, eventCategory, eventLabel, value = 1) => {
     if (typeof gtag !== 'undefined') {
-      gtag('event', eventName, {
-        event_category: eventCategory,
-        event_label: eventLabel,
-        value: value
-      });
+      gtag('event', eventName, { event_category: eventCategory, event_label: eventLabel, value })
     }
-  };
-
-  const handleWhatsAppClick = () => {
-    trackEvent('click', 'whatsapp_button', 'hero_whatsapp', 1);
-    const phoneNumber = "56963352063"
-    const message = "Hola! Quiero dejar de entrenar con dolor. ¿Cuándo podemos empezar?"
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-    window.open(url, '_blank')
   }
 
-  const handleScheduleClick = () => {
-    trackEvent('click', 'calendar_button', 'hero_calendar', 1);
-    const calendarUrl = "https://calendar.app.google/ofAAA1auXWNjXKh59"
-    window.open(calendarUrl, '_blank')
+  const handleWhatsAppClick = () => {
+    trackEvent('click', 'whatsapp_button', 'hero_whatsapp', 1)
+    window.open(WHATSAPP_URL, '_blank')
   }
 
   return (
-    <section className="relative isolate overflow-hidden min-h-[92vh] bg-white">
-        <AnimatedBlobs />
+    <section className="relative flex min-h-screen items-center overflow-hidden px-6 pb-12 pt-28">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[14%] top-28 h-64 w-64 rounded-full bg-blue-500/18 blur-3xl" />
+        <div className="absolute right-[12%] top-32 h-72 w-72 rounded-full bg-cyan-400/18 blur-3xl" />
+        <div className="absolute bottom-12 left-1/2 h-40 w-[36rem] -translate-x-1/2 rounded-full bg-slate-900/5 blur-3xl" />
+      </div>
 
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 pt-8 pb-32 lg:grid lg:grid-cols-12 lg:gap-8 lg:pt-12">
-        {/* Texto */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="z-10 col-span-7 flex flex-col items-start text-left mt-20"
-        >
+      <div className="container-max relative">
+        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-6">
+            <span className="section-eyebrow">Fisioterapia · entrenamiento</span>
+          </motion.div>
+
           <motion.h1
-            initial={{ y: -30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="mt-4 text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl leading-tight uppercase"
-            style={{ fontFamily: 'Poppins, sans-serif' }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="mb-5 max-w-5xl text-4xl font-extrabold leading-[0.95] text-slate-950 sm:text-5xl md:text-6xl lg:text-[4.8rem]"
           >
-            {"Tu dolor no es "}
-            <Typewriter word="normal" speed={80} />
+            Recupera tu cuerpo.
+            <br />
+            <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 bg-clip-text text-transparent">
+              Entrena mejor y vuelve a moverte con confianza.
+            </span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-8 text-xl font-medium text-gray-700"
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="mb-8 max-w-2xl text-base leading-relaxed text-slate-600 md:text-lg"
           >
-            Y no tienes por qué acostumbrarte
+            Rehabilitacion y entrenamiento personalizado para dejar atras el dolor, mejorar tu rendimiento y volver a disfrutar lo que haces.
           </motion.p>
 
-          <motion.p
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+            className="flex flex-col gap-3 sm:flex-row sm:items-center"
+          >
+            <button onClick={handleWhatsAppClick} className="btn-primary px-7 py-3.5 text-base">
+              <FaWhatsapp className="text-xl" />
+              Hablar por WhatsApp
+            </button>
+            <button
+              onClick={() => document.querySelector('#servicios')?.scrollIntoView({ behavior: 'smooth' })}
+              className="btn-secondary px-7 py-3.5 text-base"
+            >
+              Ver servicios
+            </button>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-8 max-w-2xl text-gray-600 text-base sm:text-lg leading-relaxed"
+            transition={{ delay: 0.9, duration: 0.6 }}
+            className="mt-8 flex flex-wrap justify-center gap-5 text-sm text-slate-500"
           >
-            Rehabilitación y entrenamiento personalizado para que vuelvas a hacer lo que te gusta:
-            entrenar, correr o simplemente levantarte sin quejarte.
-          </motion.p>
-
-          {/* CTAs */}
-          <div className="mt-12 mb-12 flex w-full max-w-xl flex-col sm:flex-row gap-3 relative">
-            <motion.button
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleScheduleClick}
-              className="relative overflow-hidden group inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-[length:200%_100%] bg-left px-6 py-3 text-white text-base font-semibold shadow-lg shadow-blue-600/30 hover:bg-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-[background-position] duration-700 ease-out"
-            >
-              Reserva tu sesión hoy
-              <ChevronRight className="ml-1 size-5 transition-transform group-hover:translate-x-0.5" />
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleWhatsAppClick}
-              className="inline-flex items-center justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
-            >
-              <MessageCircle className="mr-2 size-5" /> Escríbeme ahora
-            </motion.button>
-          </div>
-
-        </motion.div>
-
-        {/* Visual (imagen o video) */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="z-10 col-span-5 mt-12 lg:mt-0"
-        >
-          <VisualCard />
-        </motion.div>
+            <span>Atencion personalizada</span>
+            <span>Presencial y online</span>
+            <span>Rehabilitacion y rendimiento</span>
+          </motion.div>
+        </div>
       </div>
-
-      {/* Indicador scroll */}
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0, y: -6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ repeat: Infinity, repeatType: "reverse", duration: 1.4 }}
-        className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 text-gray-400"
-      >
-        <div className="flex items-center gap-2 text-sm">
-          Desliza
-          <ChevronRight className="size-4 rotate-90" />
-        </div>
-      </motion.div>
     </section>
-  );
-}
-
-function Typewriter({ word, speed = 80 }) {
-  const [text, setText] = useState("");
-  useEffect(() => {
-    let i = 0;
-    const id = setInterval(() => {
-      setText(word.slice(0, i + 1));
-      i++;
-      if (i >= word.length) clearInterval(id);
-    }, speed);
-    return () => clearInterval(id);
-  }, [word, speed]);
-
-  return (
-    <span className="inline-flex items-baseline">
-      <motion.span
-        className="drop-shadow-md text-blue-600"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
-      >
-        {text}
-      </motion.span>
-      <motion.span
-        aria-hidden
-        className="ml-1 inline-block w-[2px] h-[1em] translate-y-[2px] bg-blue-600"
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 0.8, repeat: Infinity }}
-      />
-    </span>
-  );
-}
-
-function AnimatedBlobs() {
-  return (
-    <>
-      <motion.div
-        aria-hidden
-        className="absolute -top-24 -right-24 h-80 w-80 rounded-full bg-blue-200/40 blur-3xl"
-        initial={{ scale: 0.9, opacity: 0.5 }}
-        animate={{ scale: [0.9, 1.05, 0.9], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 12, repeat: Infinity }}
-      />
-      <motion.div
-        aria-hidden
-        className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-cyan-200/40 blur-3xl"
-        initial={{ scale: 0.9, opacity: 0.5 }}
-        animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 14, repeat: Infinity }}
-      />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(59,130,246,0.08),transparent)]" />
-    </>
-  );
-}
-
-
-function VisualCard() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      whileHover={{ scale: 1.03, rotate: [0, 1, -1, 0] }}
-      className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=1600&auto=format&fit=crop"
-        alt="Fisioterapeuta guiando un ejercicio de movilidad"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent" />
-
-      {/* Tarjeta flotante de confianza */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/60 bg-white/70 p-4 backdrop-blur shadow-md"
-      >
-        <div className="flex items-center gap-3">
-          <div className="flex size-9 items-center justify-center rounded-full bg-blue-600 text-white">
-            <Phone className="size-5" />
-          </div>
-          <div className="text-sm">
-            <p className="font-semibold text-gray-900">1:1 contigo</p>
-            <p className="text-gray-600">Plan a tu medida, seguimiento semanal</p>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
+  )
 }
 
 export default Hero

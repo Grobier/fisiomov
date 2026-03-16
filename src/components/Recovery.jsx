@@ -1,704 +1,325 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Check, Clock, Star, ArrowLeft, X, Maximize2, Home } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { Check, ChevronLeft, Clock, Home, PlayCircle, Star } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import Footer from './Footer'
+import WhatsAppFloat from './WhatsAppFloat'
+
+const plans = [
+  {
+    title: 'Sauna unica',
+    subtitle: 'Solo sauna',
+    price: '$20.000',
+    duration: '20 min',
+    description: 'Una sesion puntual para bajar carga, relajar el cuerpo y acelerar recuperacion.',
+    features: ['Sauna de 20 minutos', 'Recuperacion inmediata', 'Ideal post entrenamiento'],
+    action: 'sauna_unica',
+  },
+  {
+    title: 'Recovery unico',
+    subtitle: 'Masaje + pistola + sauna',
+    price: '$33.000',
+    duration: '60 min',
+    description: 'La sesion mas completa para descargar tension, mejorar sensaciones y salir renovado.',
+    features: ['Masaje manual', 'Pistola de percusion', 'Sauna', 'Recuperacion total'],
+    action: 'recovery_unico',
+    featured: true,
+  },
+  {
+    title: 'Plan mensual',
+    subtitle: 'Sauna semanal',
+    price: '$39.990',
+    duration: '4 sesiones',
+    description: 'Para quienes quieren sumar recuperacion de forma constante en la semana.',
+    features: ['1 sesion semanal', '20 min cada una', 'Mejor constancia', 'Ahorro mensual'],
+    action: 'basico',
+  },
+  {
+    title: 'Plan plus',
+    subtitle: 'Sauna dos veces por semana',
+    price: '$59.990',
+    duration: '8 sesiones',
+    description: 'Mas frecuencia para quienes entrenan mas y necesitan sostener mejor el rendimiento.',
+    features: ['2 sesiones semanales', 'Mejor descarga', 'Mas recuperacion', 'Menor costo por sesion'],
+    action: 'plus',
+  },
+]
+
+const testimonials = [
+  {
+    name: 'Cliente Recovery',
+    text: 'Quede como nueva luego del sauna y el masaje. El servicio fue cercano, profesional y realmente se siente la diferencia.',
+  },
+  {
+    name: 'Post entrenamiento',
+    text: 'Me ayudo a bajar la carga del cuerpo mucho mas rapido. Ideal para sostener entrenamientos intensos.',
+  },
+]
 
 const Recovery = () => {
-  const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  // Scroll to top when component mounts
+  const navigate = useNavigate()
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  
-  // Función para enviar eventos a Google Analytics
+    window.scrollTo(0, 0)
+  }, [])
+
   const trackEvent = (eventName, eventCategory, eventLabel, value = 1) => {
     if (typeof gtag !== 'undefined') {
       gtag('event', eventName, {
         event_category: eventCategory,
         event_label: eventLabel,
-        value: value
-      });
+        value,
+      })
     }
-  };
-  
-  const handleBackClick = () => {
-    trackEvent('click', 'navigation', 'home_button', 1);
-    navigate('/');
-  };
+  }
 
-  const handleWhatsAppClick = (serviceName) => {
-    const phoneNumber = "56963352063"
-    let message = ""
-    
-    switch(serviceName) {
-      case 'cyberday':
-        message = "Hola! Quiero aprovechar la oferta CYBERDAY ESPECIAL de $20.000 (Masaje + Pistola + Sauna). ¿Cuándo podemos agendar?"
-        break;
-      case 'basico':
-        message = "Hola! Quiero contratar el Plan Recovery Básico ($39.990/mes - 4 sesiones). ¿Cuándo podemos agendar?"
-        break;
-      case 'plus':
-        message = "Hola! Quiero contratar el Plan Recovery Plus ($59.990/mes - 8 sesiones). ¿Cuándo podemos agendar?"
-        break;
-      case 'ilimitado':
-        message = "Hola! Quiero contratar el Plan Recovery Ilimitado ($79.990/mes - Acceso libre al sauna + masaje mensual + punción seca gratis). ¿Cuándo podemos agendar?"
-        break;
-      case 'sauna_unica':
-        message = "Hola! Quiero reservar una sesión única de Sauna ($20.000 - 20 min). ¿Cuándo podemos agendar?"
-        break;
-      case 'recovery_unico':
-        message = "Hola! Quiero reservar una sesión única de Recovery ($33.000 - Masaje Manual + Pistola de Percusión + Sauna - 60 min). ¿Cuándo podemos agendar?"
-        break;
-      default:
-        message = "Hola! Quiero reservar una sesión. ¿Cuándo podemos agendar?"
+  const handleBackClick = () => {
+    trackEvent('click', 'navigation', 'home_button', 1)
+    navigate('/')
+  }
+
+  const handleWhatsAppClick = (serviceName = 'default') => {
+    const phoneNumber = '56963352063'
+    const messages = {
+      default: 'Hola! Quiero reservar una sesion de recovery. Cuando podemos agendar?',
+      sauna_unica: 'Hola! Quiero reservar una sesion unica de sauna. Cuando podemos agendar?',
+      recovery_unico: 'Hola! Quiero reservar una sesion unica de recovery. Cuando podemos agendar?',
+      basico: 'Hola! Quiero contratar el plan mensual de recovery. Cuando podemos agendar?',
+      plus: 'Hola! Quiero contratar el plan plus de recovery. Cuando podemos agendar?',
     }
-    
-    // Enviar evento a Google Analytics
-    trackEvent('click', 'whatsapp_button', serviceName, 1);
-    
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+
+    trackEvent('click', 'whatsapp_button', serviceName, 1)
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messages[serviceName] || messages.default)}`
     window.open(url, '_blank')
-  };
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white shadow-sm sticky top-0 z-50"
-      >
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={handleBackClick}
-              className="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
-            >
-              <Home className="w-5 h-5" />
-            </button>
-            <h1 className="text-xl md:text-2xl font-bold text-gray-900 text-center flex-1 mx-4">FISIOMOVE RECOVERY</h1>
-            <div className="w-10"></div> {/* Spacer */}
-          </div>
+    <div className="min-h-screen bg-[linear-gradient(180deg,#f8fbff_0%,#f3f7fb_100%)] text-slate-950">
+      <div className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
+        <div className="container-max flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          <button
+            onClick={handleBackClick}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
+          >
+            <Home className="h-4 w-4" />
+            Inicio
+          </button>
+
+          <p className="hidden text-sm font-bold uppercase tracking-[0.22em] text-slate-500 md:block">Recovery</p>
+
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-900"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            Volver
+          </Link>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Hero Section - Minimalist */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="relative bg-white overflow-hidden"
-      >
-        <div className="relative max-w-5xl mx-auto px-6 py-32 md:py-40">
-          <div className="text-center space-y-12">
-            {/* Hero Number */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <div className="inline-block text-9xl md:text-[12rem] font-extralight text-blue-600 leading-none tracking-tighter">
-                60
-              </div>
-              <div className="mt-2 text-sm text-blue-500 uppercase tracking-[0.2em] font-medium">
-                Minutos
-              </div>
-            </motion.div>
-
-            {/* Main Title */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="space-y-4"
-            >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight">
-                Recupera tu cuerpo
-                <br />
-                <span className="font-normal text-blue-600">después de entrenar</span>
-              </h1>
-            </motion.div>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
-            >
-              Masaje manual, pistola de percusión y sauna en una sola sesión
-            </motion.p>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-            >
-              <motion.button
-                whileHover={{ backgroundColor: "#2563eb" }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handleWhatsAppClick('default')}
-                className="group inline-flex items-center justify-center gap-3 bg-blue-600 text-white font-medium py-4 px-12 text-lg hover:bg-blue-700 transition-colors duration-300"
-              >
-                Reserva tu sesión
-                <svg 
-                  className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </motion.button>
-            </motion.div>
-
-            {/* Divider */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.9, duration: 0.8 }}
-              className="h-px bg-blue-100 max-w-md mx-auto"
-            />
-          </div>
+      <section className="relative overflow-hidden px-6 pb-10 pt-16">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-1/2 top-8 h-56 w-56 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
         </div>
-      </motion.section>
 
-      {/* Educational Video Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="py-16 bg-white"
-      >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-8"
-          >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Cómo el Sauna Aumenta tu Estado Físico
-            </h2>
-            <p className="text-lg text-gray-600">
-              Descubre los beneficios científicos del sauna para tu rendimiento y recuperación
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative bg-white rounded-2xl shadow-2xl overflow-hidden"
-          >
-            {/* Video container */}
-            <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/USoDC7SLTT8?start=518&rel=0&modestbranding=1&showinfo=0"
-                title="Cómo el Sauna Aumenta tu Estado Físico"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-
-            {/* Video overlay info */}
-            <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2">
-              <div className="flex items-center gap-2 text-white">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-                <span className="text-sm font-medium">Beneficios del Sauna</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Call to action después del video educativo */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-8"
-          >
-            <p className="text-gray-600 mb-4">
-              ¿Quieres experimentar estos beneficios en tu propio cuerpo?
-            </p>
-            <button
-              onClick={() => handleWhatsAppClick('default')}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Reserva tu sesión de sauna
-            </button>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Video Testimonial Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="py-16 bg-gray-50"
-      >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-8"
-          >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Lo que dicen nuestros clientes
-            </h2>
-                    <p className="text-lg text-gray-600">
-                      Mira cómo nuestros servicios han transformado la recuperación de nuestros clientes
-                    </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative bg-white rounded-2xl shadow-2xl overflow-hidden"
-          >
-            {/* Video container */}
-            <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
-                      <iframe
-                        className="w-full h-full"
-                        src="https://www.youtube.com/embed/ZCMvj5FOS44?rel=0&modestbranding=1&showinfo=0"
-                        title="Testimonio Recovery - FISIOMOVEE"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-            </div>
-
-            {/* Video overlay info */}
-            <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2">
-              <div className="flex items-center gap-2 text-white">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-                        <span className="text-sm font-medium">Testimonio Recovery</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Call to action después del video */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-8"
-          >
-            <p className="text-gray-600 mb-4">
-              ¿Quieres experimentar los mismos resultados?
-            </p>
-            <button
-              onClick={() => handleWhatsAppClick('default')}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Reserva tu sesión ahora
-            </button>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Instagram Testimonials Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="py-16 bg-white"
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Testimonios Reales de Instagram
-            </h2>
-            <p className="text-lg text-gray-600">
-              Lo que nuestros clientes dicen sobre nuestros servicios
-            </p>
-          </motion.div>
-
-          {/* Instagram Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Testimonio 1 */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="relative group">
-                <img
-                  src="images/testimonials/testimonio0.png"
-                  alt="Testimonio de cliente en Instagram"
-                  className="w-full h-auto object-cover"
-                />
-                {/* Botón para ampliar imagen */}
-                <button
-                  onClick={() => {
-                    trackEvent('click', 'image_interaction', 'testimonial_expand', 1);
-                    setIsModalOpen(true);
-                  }}
-                  className="absolute top-4 right-4 bg-black/70 hover:bg-black/90 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg"
-                  title="Ver imagen completa"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                </button>
-              </div>
-              
-              {/* Testimonio Info */}
-              <div className="p-6">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Cliente Satisfecha</h4>
-                    <p className="text-sm text-gray-500">Servicio: Sauna + Masaje</p>
-                  </div>
-                </div>
-                
-                <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                  <p className="text-gray-700 italic text-sm leading-relaxed">
-                    "Hola Lore, espero estés bien. Quiero darte las gracias por la atención de hoy, quede como nueva luego del sauna, estaba un poco asustada pero me acompañaste bkn, además complementado con el masaje de cuerpo entero, me dejaste wow!!! 🤩 Mil gracias porque el servicio que das Lore, que además siempre aprendo algo nuevo de ti. ✨"
-                  </p>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                  </div>
-                  <span className="text-xs text-gray-500">5.0 ⭐</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Placeholder para futuros testimonios */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center min-h-[400px] hover:border-blue-400 transition-colors duration-300"
-            >
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-600 mb-2">Más testimonios próximamente</h3>
-                <p className="text-sm text-gray-500">Seguimos recibiendo feedback positivo de nuestros clientes</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center min-h-[400px] hover:border-blue-400 transition-colors duration-300"
-            >
-              <div className="text-center p-6">
-                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-600 mb-2">Más testimonios próximamente</h3>
-                <p className="text-sm text-gray-500">Seguimos recibiendo feedback positivo de nuestros clientes</p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Call to action después de testimonios */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-center mt-12"
-          >
-            <p className="text-gray-600 mb-6 text-lg">
-              ¿Quieres ser el próximo en compartir tu experiencia?
-            </p>
-            <button
-              onClick={() => handleWhatsAppClick('default')}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Reserva tu sesión ahora
-            </button>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Services Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-[1600px] mx-auto px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        <div className="container-max relative text-center">
+          <span className="section-eyebrow">Recovery</span>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="mx-auto mt-6 max-w-4xl text-4xl font-extrabold leading-[0.98] text-slate-950 sm:text-5xl md:text-6xl"
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Nuestros Servicios</h3>
-            <p className="text-xl text-gray-600">Elige el servicio que mejor se adapte a tus necesidades</p>
+            Recuperacion muscular para volver a entrenar mejor.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.15, duration: 0.6 }}
+            className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 md:text-lg"
+          >
+            Sauna, masaje manual y trabajo de descarga para bajar tension, mejorar sensaciones y sostener tu rendimiento.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.5 }}
+            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          >
+            <button onClick={() => handleWhatsAppClick('default')} className="btn-primary px-7 py-3.5 text-base">
+              Reservar recovery
+            </button>
+            <button
+              onClick={() => document.querySelector('#planes-recovery')?.scrollIntoView({ behavior: 'smooth' })}
+              className="btn-secondary px-7 py-3.5 text-base"
+            >
+              Ver planes
+            </button>
           </motion.div>
-
-          {/* Plans Grid */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {[
-              {
-                title: "Sauna Única",
-                subtitle: "Solo Sauna",
-                price: "$20.000",
-                duration: "20 min",
-                description: "Sesión única de sauna para recuperación",
-                features: [
-                  "Sauna de 20 minutos",
-                  "Sesión única",
-                  "Recuperación inmediata"
-                ],
-                buttonText: "Reservar Sesión",
-                buttonAction: 'sauna_unica'
-              },
-              {
-                title: "Recovery Único",
-                subtitle: "Masaje + Pistola + Sauna",
-                price: "$33.000",
-                duration: "60 min",
-                description: "Sesión única completa: Masaje Manual + Pistola de Percusión + Sauna",
-                features: [
-                  "Masaje Manual (20 min)",
-                  "Pistola de Percusión (20 min)",
-                  "Sauna (20 min)",
-                  "Recuperación total"
-                ],
-                buttonText: "Reservar Sesión",
-                buttonAction: 'recovery_unico'
-              },
-              {
-                title: "Sauna Básico",
-                subtitle: "Solo Sauna",
-                price: "$39.990",
-                duration: "4 sesiones/mes",
-                description: "Relaja tu cuerpo después de entrenar",
-                features: [
-                  "1 sesión de sauna semanal (4 al mes)",
-                  "20 min cada una",
-                  "Ahorra $40.000",
-                  "**Valor por sesión: $9.997**"
-                ],
-                buttonText: "Reservar Plan",
-                buttonAction: 'basico'
-              },
-              {
-                title: "Sauna Plus",
-                subtitle: "Solo Sauna",
-                price: "$59.990",
-                duration: "8 sesiones/mes",
-                description: "Duplica tu recuperación y rinde más",
-                features: [
-                  "2 sesiones de sauna semanales (8 al mes)",
-                  "20 min cada una",
-                  "Ahorra $100.000",
-                  "**Valor por sesión: $7.498**"
-                ],
-                buttonText: "Reservar Plan",
-                buttonAction: 'plus'
-              },
-              {
-                title: "Recovery Ilimitado",
-                subtitle: "Sauna + Masaje + Punción Seca",
-                price: "$79.990",
-                duration: "Ilimitado",
-                description: "Acceso libre al sauna post entrenamiento",
-                features: [
-                  "Acceso libre al sauna",
-                  "1 masaje de descarga mensual",
-                  "1 sesión de punción seca gratis",
-                  "Ahorro potencial +$200.000",
-                  "**Valor por sesión: $2.649**"
-                ],
-                buttonText: "Reservar Plan",
-                buttonAction: 'ilimitado',
-                mostPopular: true
-              }
-            ].map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className={`border rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow flex flex-col relative w-full max-w-[240px] ${
-                  service.highlight 
-                    ? service.packStyle
-                      ? 'bg-gradient-to-br from-orange-500 to-red-500 border-orange-400'
-                      : 'bg-gradient-to-br from-red-500 to-pink-500 border-red-400'
-                    : service.mostPopular
-                      ? 'bg-gradient-to-br from-blue-600 to-purple-600 border-blue-400'
-                      : 'bg-white border-gray-200'
-                }`}
-              >
-                
-                {/* Cinta Más Popular */}
-                {service.mostPopular && (
-                  <div className="absolute -top-2 -right-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg transform rotate-12 z-10">
-                    ⭐ MÁS POPULAR
-                  </div>
-                )}
-                <div className="text-center mb-6">
-                  <h4 className={`text-xl font-bold mb-2 ${
-                    service.highlight || service.mostPopular ? 'text-white' : 'text-gray-900'
-                  }`}>{service.title}</h4>
-                  {service.subtitle && (
-                    <p className={`text-sm font-medium mb-2 ${
-                      service.highlight ? 'text-white/80' : service.mostPopular ? 'text-white/90' : 'text-blue-600'
-                    }`}>{service.subtitle}</p>
-                  )}
-                  <div className="flex items-center justify-center gap-2 mb-3">
-                    <div className={`text-3xl font-bold ${
-                      service.highlight || service.mostPopular ? 'text-white' : 'text-blue-600'
-                    }`}>{service.price}</div>
-                    {service.originalPrice && (
-                      <div className={`text-sm line-through ${
-                        service.highlight ? 'text-white/80' : 'text-gray-500'
-                      }`}>{service.originalPrice}</div>
-                    )}
-                  </div>
-                  <div className={`flex items-center justify-center text-sm ${
-                    service.highlight || service.mostPopular ? 'text-white/80' : 'text-gray-500'
-                  }`}>
-                    <Clock className="w-4 h-4 mr-1" />
-                    {service.duration}
-                  </div>
-                </div>
-                <p className={`mb-3 text-center text-sm ${
-                  service.highlight || service.mostPopular ? 'text-white/90' : 'text-gray-600'
-                }`}>{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className={`flex items-center text-xs ${
-                      service.highlight || service.mostPopular ? 'text-white/90' : 'text-gray-700'
-                    }`}>
-                      <Check className={`w-3 h-3 mr-2 flex-shrink-0 ${
-                        service.highlight || service.mostPopular ? 'text-white' : 'text-green-500'
-                      }`} />
-                      <span dangerouslySetInnerHTML={{ 
-                        __html: feature.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-                      }} />
-                    </li>
-                  ))}
-                </ul>
-                
-                <button
-                  onClick={() => handleWhatsAppClick(service.buttonAction)}
-                  className={`w-full py-3 px-2 rounded-lg font-semibold text-xs transition-all duration-300 ${service.mostPopular ? 'mt-6' : 'mt-auto'} ${
-                    service.highlight
-                      ? 'bg-white text-red-600 hover:bg-gray-100'
-                      : service.mostPopular
-                        ? 'bg-white text-blue-600 hover:bg-gray-100'
-                        : 'bg-blue-600 text-white hover:bg-blue-700'
-                  }`}
-                >
-                  {service.buttonText}
-                </button>
-              </motion.div>
-            ))}
-          </div>
-
-
         </div>
       </section>
 
-      {/* CTA Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16"
-      >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h3 className="text-3xl font-bold mb-4">¿Listo para recuperar tu cuerpo?</h3>
-          <p className="text-xl mb-8">
-            No esperes más. Reserva tu sesión y comienza a sentir la diferencia desde hoy.
-          </p>
-          <button
-            onClick={() => handleWhatsAppClick('default')}
-            className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            Reservar Mi Sesión
-          </button>
-        </div>
-      </motion.section>
+      <section className="section-padding">
+        <div className="container-max">
+          <div className="mb-10 text-center">
+            <span className="section-eyebrow">Por que recovery</span>
+            <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Una recuperacion mas inteligente.</h2>
+          </div>
 
-      {/* Modal para imagen ampliada */}
-      {isModalOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={() => setIsModalOpen(false)}
-        >
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            className="relative max-w-4xl max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header del modal */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Testimonio Completo - Instagram
-              </h3>
-              <button
-                onClick={() => {
-                  trackEvent('click', 'modal_interaction', 'close_testimonial', 1);
-                  setIsModalOpen(false);
-                }}
-                className="p-2 hover:bg-gray-200 rounded-full transition-colors"
-              >
-                <X className="w-5 h-5 text-gray-600" />
-              </button>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { title: 'Baja fatiga', text: 'Reduce sensacion de carga y mejora percepcion corporal despues de entrenar.' },
+              { title: 'Mejora sensaciones', text: 'Sales con mas soltura, menos rigidez y mejor disposicion para seguir moviendote.' },
+              { title: 'Sostiene rendimiento', text: 'Te ayuda a recuperar mejor para entrenar con mas continuidad.' },
+            ].map((item) => (
+              <div key={item.title} className="mesh-card p-7">
+                <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-slate-700">{item.title}</p>
+                <p className="text-sm leading-7 text-slate-600">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-10 sm:px-6 lg:px-8">
+        <div className="container-max grid gap-6 lg:grid-cols-2">
+          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
+            <div className="mb-5 flex items-center gap-3">
+              <PlayCircle className="h-6 w-6 text-blue-600" />
+              <h3 className="text-2xl font-bold text-slate-950">Como el sauna apoya tu estado fisico</h3>
             </div>
-            
-            {/* Imagen ampliada */}
-            <div className="p-4">
-              <img
-                src="images/testimonials/testimonio0.png"
-                alt="Testimonio de cliente en Instagram - Vista completa"
-                className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
+            <div className="aspect-video overflow-hidden rounded-[24px] bg-slate-900">
+              <iframe
+                className="h-full w-full"
+                src="https://www.youtube.com/embed/USoDC7SLTT8?start=518&rel=0&modestbranding=1&showinfo=0"
+                title="Beneficios del sauna"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
               />
             </div>
-            
-            {/* Footer del modal */}
-            <div className="p-4 bg-gray-50 border-t text-center">
-              <p className="text-sm text-gray-600">
-                Haz clic fuera del modal para cerrar
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </div>
-  );
-};
+          </div>
 
-export default Recovery;
+          <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
+            <div className="mb-5 flex items-center gap-3">
+              <PlayCircle className="h-6 w-6 text-blue-600" />
+              <h3 className="text-2xl font-bold text-slate-950">Testimonio recovery</h3>
+            </div>
+            <div className="aspect-video overflow-hidden rounded-[24px] bg-slate-900">
+              <iframe
+                className="h-full w-full"
+                src="https://www.youtube.com/embed/ZCMvj5FOS44?rel=0&modestbranding=1&showinfo=0"
+                title="Testimonio recovery"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="planes-recovery" className="section-padding">
+        <div className="container-max">
+          <div className="mb-10 text-center">
+            <span className="section-eyebrow">Planes</span>
+            <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Elige el formato que mejor te acomoda.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
+              Sesiones unicas o planes para sostener tu recuperacion con mas frecuencia.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {plans.map((plan) => (
+              <div
+                key={plan.title}
+                className={`rounded-[30px] border p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] ${
+                  plan.featured ? 'border-slate-950 bg-slate-950 text-white' : 'border-slate-200 bg-white text-slate-950'
+                }`}
+              >
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <span className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] ${plan.featured ? 'bg-white/10 text-slate-200' : 'bg-slate-100 text-slate-600'}`}>
+                    {plan.subtitle}
+                  </span>
+                  <div className={`flex items-center gap-1 text-sm ${plan.featured ? 'text-slate-300' : 'text-slate-500'}`}>
+                    <Clock className="h-4 w-4" />
+                    {plan.duration}
+                  </div>
+                </div>
+
+                <h3 className="text-2xl font-bold">{plan.title}</h3>
+                <p className={`mt-2 text-3xl font-extrabold ${plan.featured ? 'text-white' : 'text-slate-950'}`}>{plan.price}</p>
+                <p className={`mt-4 text-sm leading-7 ${plan.featured ? 'text-slate-300' : 'text-slate-600'}`}>{plan.description}</p>
+
+                <div className="mt-5 space-y-3">
+                  {plan.features.map((feature) => (
+                    <div key={feature} className="flex items-start gap-3">
+                      <Check className={`mt-0.5 h-4 w-4 shrink-0 ${plan.featured ? 'text-cyan-300' : 'text-slate-950'}`} />
+                      <p className={`text-sm leading-6 ${plan.featured ? 'text-slate-200' : 'text-slate-700'}`}>{feature}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => handleWhatsAppClick(plan.action)}
+                  className={`mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold transition-colors ${
+                    plan.featured ? 'bg-white text-slate-950 hover:bg-slate-100' : 'bg-slate-950 text-white hover:bg-slate-900'
+                  }`}
+                >
+                  Reservar plan
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding pt-4">
+        <div className="container-max">
+          <div className="mb-10 text-center">
+            <span className="section-eyebrow">Testimonios</span>
+            <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Lo que dicen quienes ya lo probaron.</h2>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {testimonials.map((item) => (
+              <div key={item.name} className="mesh-card p-7">
+                <div className="mb-4 flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="mr-1 h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-base leading-8 text-slate-700">"{item.text}"</p>
+                <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">{item.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="container-max">
+          <div className="rounded-[36px] border border-slate-200 bg-white px-8 py-14 text-center shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
+            <span className="section-eyebrow">Reserva tu sesion</span>
+            <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Listo para recuperar mejor?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
+              Escribeme y agendamos la opcion que mas sentido tenga para tu entrenamiento y tu cuerpo.
+            </p>
+            <div className="mt-8">
+              <button onClick={() => handleWhatsAppClick('default')} className="btn-primary px-8 py-4 text-base">
+                Reservar mi sesion
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      <WhatsAppFloat />
+    </div>
+  )
+}
+
+export default Recovery

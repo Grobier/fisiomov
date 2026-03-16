@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaQuoteLeft, FaStar, FaPlay } from 'react-icons/fa'
+import { FaPlay, FaStar } from 'react-icons/fa'
 
 const Testimonials = () => {
   const [playingVideo, setPlayingVideo] = useState(null)
@@ -7,128 +7,65 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Fran",
+      name: 'Fran',
       age: 30,
-      sport: "Atleta",
-      injury: "Recuperación muscular",
-      image: "/testimonial-fran.jpg",
-      rating: 5,
-      text: "El servicio de Recovery de FISIOMOVE ha sido fundamental en mi proceso de recuperación. Las sesiones con masaje, pistola de percusión y sauna me han ayudado a recuperarme más rápido y entrenar sin dolor.",
-      result: "Recuperación muscular óptima",
+      sport: 'Atleta',
+      text: 'El servicio de Recovery fue clave para recuperarme mas rapido y volver a entrenar sin dolor.',
+      result: 'Recuperacion muscular optima',
       beforeAfter: {
-        before: "Dolor y tensión muscular constante",
-        after: "Entrenamiento sin molestias y mejor rendimiento"
+        before: 'Dolor y tension muscular constante',
+        after: 'Entrenamiento sin molestias y mejor rendimiento',
       },
-      videoUrl: "https://www.youtube.com/embed/gF3dE9EvVIk"
+      videoUrl: 'https://www.youtube.com/embed/gF3dE9EvVIk',
     },
     {
       id: 2,
-      name: "Carlos Mendoza",
+      name: 'Carlos Mendoza',
       age: 35,
-      sport: "Fútbol",
-      injury: "Desgarro muscular",
-      image: "/testimonial-carlos.jpg",
-      rating: 5,
-      text: "El tratamiento fue excepcional. Tuve un desgarro en el isquiotibial y pensé que no volvería a jugar fútbol. El kinesiólogo de FISIOMOVE no solo me recuperó físicamente, sino que me dio la confianza para volver a la cancha sin miedo.",
-      result: "Regresó al fútbol competitivo",
+      sport: 'Futbol',
+      text: 'No solo mejore fisicamente. Tambien recupere la confianza para volver a la cancha sin miedo.',
+      result: 'Volvio al futbol competitivo',
       beforeAfter: {
-        before: "Dolor constante al caminar",
-        after: "Juega 90 minutos sin molestias"
+        before: 'Dolor constante al caminar',
+        after: 'Juega 90 minutos sin molestias',
       },
-      videoUrl: "https://www.youtube.com/embed/example2"
+      videoUrl: 'https://www.youtube.com/embed/example2',
     },
     {
       id: 3,
-      name: "Cristóbal",
+      name: 'Cristobal',
       age: 28,
-      sport: "Evaluación Kinesiológica",
-      injury: "Evaluación completa",
-      image: "/testimonial-cristobal.jpg",
-      rating: 5,
-      text: "La evaluación kinesiológica fue increíble. Me ayudó a entender exactamente qué estaba pasando con mi cuerpo y cómo mejorar mi movimiento. El profesionalismo y la atención al detalle fueron excepcionales.",
-      result: "Comprensión completa de su condición",
+      sport: 'Evaluacion',
+      text: 'La evaluacion me ayudo a entender exactamente que estaba pasando y como empezar a mejorar.',
+      result: 'Claridad total y plan de accion',
       beforeAfter: {
-        before: "Dudas sobre su condición física",
-        after: "Claridad total y plan de acción"
+        before: 'Dudas sobre su condicion fisica',
+        after: 'Plan claro y ejecutable',
       },
-      videoUrl: "https://www.youtube.com/embed/7NhPS78RI50"
-    },
-    {
-      id: 4,
-      name: "Ana Rodríguez",
-      age: 42,
-      sport: "Fitness",
-      injury: "Dolor lumbar crónico",
-      image: "/testimonial-ana.jpg",
-      rating: 5,
-      text: "Llevaba años con dolor lumbar que limitaba todas mis actividades. Los ejercicios personalizados y las técnicas de FISIOMOVE me cambiaron la vida. Ahora puedo entrenar sin dolor y he mejorado mi postura completamente.",
-      result: "Eliminó el dolor lumbar crónico",
-      beforeAfter: {
-        before: "Dolor diario nivel 7/10",
-        after: "Sin dolor, entrena 5 días a la semana"
-      },
-      videoUrl: "https://www.youtube.com/embed/example3"
-    },
-    {
-      id: 5,
-      name: "Diego Silva",
-      age: 24,
-      sport: "Ciclismo",
-      injury: "Tendinitis rotuliana",
-      image: "/testimonial-diego.jpg",
-      rating: 5,
-      text: "La tendinitis me tenía alejado de la bicicleta por meses. El programa de rehabilitación fue progresivo y muy efectivo. Ahora no solo puedo pedalear sin dolor, sino que mi rendimiento ha mejorado significativamente.",
-      result: "Mejoró su rendimiento en ciclismo",
-      beforeAfter: {
-        before: "No podía pedalear más de 30 minutos",
-        after: "Completó 100km sin molestias"
-      },
-      videoUrl: "https://www.youtube.com/embed/example4"
-    },
-    {
-      id: 6,
-      name: "Patricia López",
-      age: 38,
-      sport: "Yoga/Pilates",
-      injury: "Lesión de hombro",
-      image: "/testimonial-patricia.jpg",
-      rating: 5,
-      text: "Mi lesión de hombro me impedía hacer las posturas que más amaba en yoga. El enfoque integral de FISIOMOVE, combinando terapia manual con ejercicios específicos, me devolvió la movilidad completa. Ahora soy instructora de yoga sin limitaciones.",
-      result: "Recuperó movilidad completa del hombro",
-      beforeAfter: {
-        before: "Movilidad limitada a 90 grados",
-        after: "Movilidad completa, es instructora de yoga"
-      },
-      videoUrl: "https://www.youtube.com/embed/example5"
+      videoUrl: 'https://www.youtube.com/embed/7NhPS78RI50',
     },
   ]
 
   return (
-    <section id="testimonios" className="py-6 px-4 sm:px-6 lg:px-8 bg-white">
+    <section
+      id="testimonios"
+      className="section-padding bg-fixed bg-[radial-gradient(circle_at_center,rgba(14,165,164,0.08),transparent_26%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)]"
+    >
       <div className="container-max">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center bg-gradient-to-r from-slate-700 to-slate-900 text-white px-6 py-2 rounded-full text-sm font-medium mb-6 shadow-lg">
-            <span className="mr-2">⭐</span>
-            Historias reales
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-            Lo que dicen nuestros{' '}
-            <span className="bg-gradient-to-r from-slate-600 to-slate-800 bg-clip-text text-transparent">pacientes</span>
-          </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Casos reales de transformación y recuperación 💪
+        <div className="mb-10 text-center">
+          <span className="section-eyebrow">Historias reales</span>
+          <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Resultados que se sienten en la vida diaria.</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+            Casos reales de recuperacion, confianza y regreso al movimiento.
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              {/* Video Section */}
+            <div key={testimonial.id} className="mesh-card p-6 transition-all duration-300 hover:-translate-y-1">
               <div className="mb-6">
                 {playingVideo === testimonial.id ? (
-                  <div className="relative bg-slate-800 rounded-lg overflow-hidden aspect-video">
+                  <div className="relative aspect-video overflow-hidden rounded-[24px] bg-slate-800">
                     <iframe
                       width="100%"
                       height="100%"
@@ -137,15 +74,14 @@ const Testimonials = () => {
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      className="w-full h-full"
-                    ></iframe>
+                      className="h-full w-full"
+                    />
                   </div>
                 ) : (
-                  <div 
-                    className="relative bg-slate-800 rounded-lg overflow-hidden aspect-video group cursor-pointer" 
+                  <div
+                    className="group relative aspect-video cursor-pointer overflow-hidden rounded-[24px] bg-slate-800"
                     onClick={() => setPlayingVideo(testimonial.id)}
                   >
-                    {/* Video thumbnail - muestra el video directamente */}
                     <iframe
                       width="100%"
                       height="100%"
@@ -154,54 +90,48 @@ const Testimonials = () => {
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      className="w-full h-full pointer-events-none"
-                    ></iframe>
-                    
-                    {/* Play button overlay */}
+                      className="pointer-events-none h-full w-full"
+                    />
+
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center group-hover:bg-red-700 transition-all duration-300 group-hover:scale-110 shadow-lg">
-                        <FaPlay className="text-white text-xl ml-1" />
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-red-700">
+                        <FaPlay className="ml-1 text-xl text-white" />
                       </div>
                     </div>
-                    
-                    {/* Patient info overlay */}
-                    <div className="absolute bottom-3 left-3 text-white bg-black bg-opacity-70 px-3 py-2 rounded-lg">
-                      <p className="font-medium text-sm">{testimonial.name}</p>
+
+                    <div className="absolute bottom-3 left-3 rounded-2xl bg-white/90 px-3 py-2 text-slate-950">
+                      <p className="text-sm font-medium">{testimonial.name}</p>
                       <p className="text-xs opacity-90">{testimonial.sport}</p>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Rating */}
-              <div className="flex justify-center mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400 text-sm" />
+              <div className="mb-4 flex justify-center">
+                {[...Array(5)].map((_, i) => (
+                  <FaStar key={i} className="text-sm text-yellow-400" />
                 ))}
               </div>
 
-              {/* Testimonial Text */}
-              <blockquote className="text-gray-700 text-center mb-4 leading-relaxed text-sm">
-                "{testimonial.text}"
-              </blockquote>
+              <blockquote className="mb-4 text-center text-sm leading-7 text-slate-700">"{testimonial.text}"</blockquote>
 
-              {/* Patient Info */}
-              <div className="text-center mb-4">
-                <div className="font-semibold text-gray-900 text-base">{testimonial.name}</div>
-                <div className="text-gray-600 text-xs mb-1">{testimonial.sport} • {testimonial.age} años</div>
-                <div className="text-green-600 font-medium text-xs">{testimonial.result}</div>
+              <div className="mb-4 text-center">
+                <div className="text-base font-semibold text-slate-950">{testimonial.name}</div>
+                <div className="mb-1 text-xs text-slate-500">
+                  {testimonial.sport} · {testimonial.age} anos
+                </div>
+                <div className="text-xs font-medium text-green-600">{testimonial.result}</div>
               </div>
 
-              {/* Before/After */}
-              <div className="pt-4 border-t border-gray-100">
+              <div className="border-t border-slate-200/80 pt-4">
                 <div className="grid grid-cols-2 gap-3 text-xs">
                   <div>
-                    <div className="text-red-600 font-medium mb-1">Antes:</div>
-                    <div className="text-gray-600">{testimonial.beforeAfter.before}</div>
+                    <div className="mb-1 font-medium text-red-600">Antes:</div>
+                    <div className="text-slate-600">{testimonial.beforeAfter.before}</div>
                   </div>
                   <div>
-                    <div className="text-green-600 font-medium mb-1">Después:</div>
-                    <div className="text-gray-600">{testimonial.beforeAfter.after}</div>
+                    <div className="mb-1 font-medium text-green-600">Despues:</div>
+                    <div className="text-slate-600">{testimonial.beforeAfter.after}</div>
                   </div>
                 </div>
               </div>

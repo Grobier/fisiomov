@@ -1,34 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg: #f5f7fb;
+    --surface: rgba(255, 255, 255, 0.88);
+    --surface-strong: #ffffff;
+    --border: rgba(15, 23, 42, 0.08);
+    --text: #0f172a;
+    --muted: #64748b;
+    --brand: #2563eb;
+    --brand-2: #0ea5a4;
+    --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.06);
+    --shadow-card: 0 20px 50px rgba(15, 23, 42, 0.08);
+  }
+
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: var(--text);
+    background: linear-gradient(180deg, #f8fbff 0%, #f3f7fb 100%);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', sans-serif;
+    letter-spacing: -0.03em;
+  }
+
+  ::selection {
+    background: rgba(15, 111, 255, 0.18);
+    color: #0f172a;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-semibold text-white transition-all duration-300;
+    background: var(--text);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
   }
   
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-primary-600 font-medium py-3 px-6 rounded-lg border border-primary-600 transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-semibold transition-all duration-300;
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: var(--shadow-soft);
   }
   
   .section-padding {
-    @apply py-6 px-4 sm:px-6 lg:px-8;
+    @apply px-4 py-16 sm:px-6 lg:px-8;
   }
   
   .container-max {
-    @apply max-w-7xl mx-auto;
+    @apply mx-auto max-w-6xl;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em];
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--border);
+    color: #334155;
+  }
+
+  .glass-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(14px);
+  }
+
+  .mesh-card {
+    @apply relative overflow-hidden rounded-[28px];
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
   }
   
   .fade-in {

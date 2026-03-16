@@ -17,7 +17,7 @@ const WhatsAppFloat = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "56963352063"
-    const message = "Hola! Vengo desde la página web de FISIOMOVEE y me interesa conocer más sobre sus servicios."
+    const message = "Hola! Vengo desde la página web de FISIOMOVE y me interesa conocer más sobre sus servicios."
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     
     // Track click event for analytics

@@ -1,215 +1,103 @@
-import React, { useState } from 'react'
-import { FaWhatsapp, FaCalendarAlt, FaPhone, FaMapMarkerAlt, FaClock, FaEnvelope, FaPaperPlane } from 'react-icons/fa'
-import { subscribeToNewsletter } from '../services/firebase'
+import React from 'react'
+import { motion } from 'framer-motion'
+import { FaArrowRight, FaCheckCircle, FaWhatsapp } from 'react-icons/fa'
+
+const WHATSAPP_URL = 'https://wa.me/56963352063?text=Hola%20Lorenzo,%20vi%20tu%20web%20y%20me%20gustaria%20saber%20como%20puedes%20ayudarme%20con%20mi%20dolor'
+
+const checks = ['Sin compromiso', 'Te respondo personalmente', 'Primera sesion gratuita disponible']
 
 const Contact = () => {
-  const [email, setEmail] = useState('')
-  const [isSubscribed, setIsSubscribed] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-
-  const handleNewsletterSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    
-    try {
-      await subscribeToNewsletter(email)
-      setIsSubscribed(true)
-      setEmail('')
-      
-      // Track successful subscription
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'subscribe', {
-          event_category: 'Newsletter',
-          event_label: 'Footer Signup'
-        })
-      }
-    } catch (error) {
-      console.error('Error al suscribir:', error)
-      alert(error.message || 'Error al suscribirse. Por favor, intenta nuevamente.')
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const handleWhatsAppClick = () => {
-    const phoneNumber = "56963352063"
-    const message = "Hola! Me interesa agendar una consulta con FISIOMOVEE. ¿Podrías ayudarme?"
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-    window.open(url, '_blank')
-  }
-
-  const handleScheduleClick = () => {
-    const calendarUrl = "https://calendar.app.google/ofAAA1auXWNjXKh59"
-    window.open(calendarUrl, '_blank')
-  }
-
-  const handleCallClick = () => {
-    window.open('tel:+56963352063', '_self')
-  }
-
-  const contactInfo = [
-    {
-      icon: FaPhone,
-      title: "Teléfono",
-      info: "+56 9 6335 2063",
-      action: handleCallClick,
-      color: "bg-blue-500"
-    },
-    {
-      icon: FaWhatsapp,
-      title: "WhatsApp",
-      info: "Respuesta inmediata",
-      action: handleWhatsAppClick,
-      color: "bg-green-500"
-    },
-    {
-      icon: FaMapMarkerAlt,
-      title: "Ubicación",
-      info: "Santiago, Chile",
-      action: () => window.open('https://maps.google.com/?q=Santiago+Chile', '_blank'),
-      color: "bg-red-500"
-    },
-    {
-      icon: FaClock,
-      title: "Horarios",
-      info: "Lun-Vie 8:00-20:00",
-      action: null,
-      color: "bg-purple-500"
-    }
-  ]
-
-  const scheduleOptions = [
-    {
-      title: "Consulta Inicial Gratis",
-      duration: "30 min",
-      description: "Evaluación completa y plan de tratamiento personalizado",
-      price: "GRATIS",
-      highlight: true
-    },
-    {
-      title: "Sesión de Rehabilitación",
-      duration: "45-60 min",
-      description: "Tratamiento especializado para tu lesión específica",
-      price: "Desde $35.000"
-    },
-    {
-      title: "Entrenamiento Personalizado",
-      duration: "60 min",
-      description: "Programa de ejercicios adaptado a tus objetivos",
-      price: "Desde $40.000"
-    }
-  ]
-
   return (
-    <section id="contacto" className="py-6 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="contacto" className="bg-slate-100 px-4 py-24 sm:px-6 lg:px-8">
       <div className="container-max">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-6 shadow-lg">
-            <span className="mr-2">🚀</span>
-            ¡Comienza hoy!
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-            Tu{' '}
-            <span className="bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">transformación</span>
-            {' '}empieza aquí
-          </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            ¿Listo para cambiar tu vida? Solo falta dar el primer paso 💪
-          </p>
-        </div>
+        <div className="grid items-center gap-10 lg:grid-cols-[0.88fr_1.12fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-xl"
+          >
+            <span className="section-eyebrow bg-white">Comienza hoy</span>
+            <h2 className="mt-6 text-4xl font-bold leading-[0.98] text-slate-950 md:text-5xl">
+              Cuentame que te esta pasando y definimos el siguiente paso.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-slate-600">
+              Escribeme por WhatsApp. Te respondo personalmente y te digo con honestidad si este es el camino correcto para ti.
+            </p>
+          </motion.div>
 
-        {/* Modern CTA Section */}
-        <div className="max-w-4xl mx-auto mb-20">
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Schedule Card */}
-            <div className="group relative bg-gradient-to-br from-black to-gray-800 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-white bg-opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500 pointer-events-none"></div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-white bg-opacity-5 rounded-full group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
-              
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <FaCalendarAlt className="text-white text-2xl" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="relative overflow-hidden rounded-[36px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] sm:p-8"
+          >
+            <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full bg-emerald-100/70 blur-3xl" />
+            <div className="pointer-events-none absolute bottom-0 left-0 h-40 w-40 rounded-full bg-cyan-100/70 blur-3xl" />
+
+            <div className="relative">
+              <div className="rounded-[30px] bg-slate-950 p-5 text-white shadow-[0_20px_50px_rgba(15,23,42,0.28)]">
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10">
+                      <FaWhatsapp className="text-xl text-emerald-300" />
+                    </div>
+                    <div>
+                      <p className="text-lg font-semibold">WhatsApp</p>
+                      <p className="text-sm text-slate-400">Respuesta directa</p>
+                    </div>
+                  </div>
+                  <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-300">
+                    Online
+                  </span>
                 </div>
-                
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Clase Gratuita
-                </h3>
-                <p className="text-gray-300 mb-6 leading-relaxed">
-                  Evaluación completa + primera sesión sin costo. Descubre tu potencial real.
+
+                <div className="space-y-3">
+                  <div className="max-w-[82%] rounded-2xl rounded-tl-md bg-white/8 px-4 py-3 text-sm leading-6 text-slate-200">
+                    Hola Lorenzo, quiero volver a entrenar sin miedo al dolor.
+                  </div>
+                  <div className="ml-auto max-w-[82%] rounded-2xl rounded-tr-md bg-emerald-400 px-4 py-3 text-sm font-medium leading-6 text-slate-950">
+                    Perfecto. Cuentame que te esta pasando y vemos cual es el mejor siguiente paso.
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-7 text-center">
+                <h3 className="text-2xl font-bold text-slate-950">Hablar por WhatsApp</h3>
+                <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-slate-600">
+                  Cuanto mas contexto me des, mas facil sera orientarte bien.
                 </p>
-                
-                <div className="flex items-center mb-6 text-green-400">
-                  <span className="mr-2">✓</span>
-                  <span className="text-sm">Evaluación profesional</span>
-                </div>
-                <div className="flex items-center mb-6 text-green-400">
-                  <span className="mr-2">✓</span>
-                  <span className="text-sm">Plan personalizado</span>
-                </div>
-                <div className="flex items-center mb-8 text-green-400">
-                  <span className="mr-2">✓</span>
-                  <span className="text-sm">Sin compromiso</span>
-                </div>
-                
-                <button 
-                  onClick={handleScheduleClick}
-                  className="bg-white text-black hover:bg-gray-100 font-bold py-4 px-8 rounded-2xl transition-all duration-300 w-full transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {checks.map((item) => (
+                  <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-center text-sm font-medium text-slate-700">
+                    <div className="mb-2 flex justify-center">
+                      <FaCheckCircle className="text-slate-950" />
+                    </div>
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-7 flex justify-center">
+                <button
+                  onClick={() => window.open(WHATSAPP_URL, '_blank')}
+                  className="btn-primary rounded-2xl px-10 py-4 text-base"
                 >
-                  <span>🎯</span>
-                  Agendar Ahora
+                  <FaWhatsapp className="text-xl" />
+                  Escribir ahora
+                  <FaArrowRight className="text-sm" />
                 </button>
               </div>
             </div>
-
-            {/* WhatsApp Card */}
-            <div className="group relative bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -left-4 w-20 h-20 bg-white bg-opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500 pointer-events-none"></div>
-              <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-white bg-opacity-5 rounded-full group-hover:scale-110 transition-transform duration-500 pointer-events-none"></div>
-              
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <FaWhatsapp className="text-white text-2xl" />
-                </div>
-                
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Consulta Rápida
-                </h3>
-                <p className="text-green-100 mb-6 leading-relaxed">
-                  ¿Tienes dudas? Escríbeme por WhatsApp y te respondo al instante.
-                </p>
-                
-                <div className="flex items-center mb-6 text-green-100">
-                  <span className="mr-2">⚡</span>
-                  <span className="text-sm">Respuesta inmediata</span>
-                </div>
-                <div className="flex items-center mb-6 text-green-100">
-                  <span className="mr-2">💬</span>
-                  <span className="text-sm">Asesoría personalizada</span>
-                </div>
-                <div className="flex items-center mb-8 text-green-100">
-                  <span className="mr-2">📱</span>
-                  <span className="text-sm">Disponible 24/7</span>
-                </div>
-                
-                <button 
-                  onClick={handleWhatsAppClick}
-                  className="bg-white text-green-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-2xl transition-all duration-300 w-full transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                >
-                  <FaWhatsapp />
-                  Escribir Ahora
-                </button>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
-
       </div>
     </section>
   )
 }
 
 export default Contact
-

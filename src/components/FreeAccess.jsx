@@ -19,9 +19,8 @@ const countryCodes = [
 ]
 
 const benefits = [
-  'Video clase de movilidad y recuperacion',
-  'Guia de ejercicios para el dolor de espalda',
-  'Rutina de calentamiento profesional',
+  { text: 'Libreria Movement Snack para siempre', bonus: false },
+  { text: 'Acceso directo por correo, al instante', bonus: false },
 ]
 
 const FreeAccess = () => {
@@ -98,9 +97,9 @@ const FreeAccess = () => {
           transition={{ delay: 0.1 }}
           className="text-center text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight"
         >
-          Recursos gratuitos{' '}
+          Acceso gratis a{' '}
           <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            para empezar hoy
+            Movement Snack
           </span>
         </motion.h2>
 
@@ -111,7 +110,7 @@ const FreeAccess = () => {
           transition={{ delay: 0.2 }}
           className="text-center text-gray-400 text-lg max-w-xl mx-auto mb-12"
         >
-          Deja tu correo y recibe acceso inmediato a material exclusivo para recuperarte y moverte mejor.
+          Dejanos tus datos y te enviamos el acceso  para que disfrutes la libreria para siempre.
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -131,17 +130,17 @@ const FreeAccess = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.1 }}
-                  className="flex items-start gap-3 text-gray-300"
+                  className={`flex items-start gap-3 rounded-2xl p-3 ${item.bonus ? 'bg-yellow-500/10 border border-yellow-500/30' : ''}`}
                 >
-                  <FaCheckCircle className="text-blue-400 mt-0.5 shrink-0 text-lg" />
-                  <span>{item}</span>
+                  <FaCheckCircle className={`mt-0.5 shrink-0 text-lg ${item.bonus ? 'text-yellow-400' : 'text-blue-400'}`} />
+                  <span className={item.bonus ? 'text-yellow-300 font-semibold' : 'text-gray-300'}>{item.text}</span>
                 </motion.li>
               ))}
             </ul>
 
             <div className="mt-8 p-4 rounded-2xl bg-white/5 border border-white/10">
               <p className="text-gray-400 text-sm">
-                Sin spam. Solo contenido util para tu recuperacion. Puedes darte de baja cuando quieras.
+                Acceso inmediato por correo. Sin spam. Para siempre.
               </p>
             </div>
           </motion.div>
@@ -164,7 +163,7 @@ const FreeAccess = () => {
                 </div>
                 <h3 className="text-white text-2xl font-bold mb-2">Listo!</h3>
                 <p className="text-gray-400">
-                  Revisa tu correo. Te enviamos el acceso en los proximos minutos.
+                  Revisa tu correo. Te enviamos el acceso a la libreria Movement Snack y tu bono de regalo.
                 </p>
               </motion.div>
             ) : (
@@ -238,7 +237,7 @@ const FreeAccess = () => {
                   whileTap={{ scale: loading ? 1 : 0.97 }}
                   className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-4 rounded-2xl transition-opacity disabled:opacity-60 shadow-lg shadow-blue-600/30"
                 >
-                  {loading ? 'Enviando...' : 'Quiero acceso gratis'}
+                  {loading ? 'Enviando...' : 'Quiero mi acceso gratis'}
                 </motion.button>
 
                 <p className="text-center text-gray-500 text-xs">
