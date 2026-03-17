@@ -67,7 +67,7 @@ const services = [
   {
     id: 3,
     slug: 'entrenamiento',
-    title: 'Entrenamiento 1:1 · 1:2 · 1:3',
+    title: 'Entrenamiento personalizado',
     subtitle: 'ENTRENAMIENTO EN SEDE',
     description: 'Entrenamiento guiado en formato individual o reducido, adaptado a tus objetivos y nivel fisico.',
     icon: FaDumbbell,

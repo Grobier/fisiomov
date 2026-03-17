@@ -8,7 +8,7 @@ const checks = ['Sin compromiso', 'Te respondo personalmente', 'Primera sesion g
 
 const Contact = () => {
   return (
-    <section id="contacto" className="bg-slate-100 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="contacto" className="bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] px-4 py-24 sm:px-6 lg:px-8">
       <div className="container-max">
         <div className="grid items-center gap-10 lg:grid-cols-[0.88fr_1.12fr]">
           <motion.div
@@ -18,7 +18,7 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="max-w-xl"
           >
-            <span className="section-eyebrow bg-white">Comienza hoy</span>
+            <span className="section-eyebrow">Comienza hoy</span>
             <h2 className="mt-6 text-4xl font-bold leading-[0.98] text-slate-950 md:text-5xl">
               Cuentame que te esta pasando y definimos el siguiente paso.
             </h2>
@@ -32,13 +32,12 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="relative overflow-hidden rounded-[36px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] sm:p-8"
+            className="relative overflow-hidden rounded-[36px] border border-slate-200 bg-white p-6 shadow-none sm:p-8"
           >
-            <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full bg-emerald-100/70 blur-3xl" />
-            <div className="pointer-events-none absolute bottom-0 left-0 h-40 w-40 rounded-full bg-cyan-100/70 blur-3xl" />
-
+            <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan-100/70 blur-3xl" />
+            <div className="pointer-events-none absolute bottom-0 left-0 h-40 w-40 rounded-full bg-blue-100/70 blur-3xl" />
             <div className="relative">
-              <div className="rounded-[30px] bg-slate-950 p-5 text-white shadow-[0_20px_50px_rgba(15,23,42,0.28)]">
+              <div className="rounded-[30px] border border-slate-200 bg-slate-950 p-5 text-white shadow-none">
                 <div className="mb-5 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10">

@@ -36,9 +36,7 @@ const Services = () => {
           <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-bold text-slate-950 md:text-5xl">
             Elige el servicio que mejor se adapta a tu objetivo.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
-            Cada servicio tiene ahora su propia subpagina con informacion clara y especifica.
-          </p>
+        
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

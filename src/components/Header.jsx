@@ -63,14 +63,14 @@ const Header = () => {
           <div className="hidden items-center gap-3 md:flex">
             <Link
               to="/recursos-gratuitos"
-              className="group flex items-center gap-3 rounded-full border border-slate-900 bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-900"
+              className="group flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-950 transition-all duration-200 hover:border-slate-300"
             >
-              <span className="flex items-center gap-1 rounded-full bg-cyan-300 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-950">
-                <span className="h-1.5 w-1.5 rounded-full bg-slate-950" />
+              <span className="flex items-center gap-1 rounded-full bg-cyan-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-800">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-700" />
                 Gratis
               </span>
               <span>Movement Snack</span>
-              <FaArrowRight className="text-xs text-cyan-300 transition-transform duration-200 group-hover:translate-x-1" />
+              <FaArrowRight className="text-xs text-cyan-700 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </div>
 
@@ -87,16 +87,16 @@ const Header = () => {
               <Link
                 to="/recursos-gratuitos"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-between rounded-2xl border border-slate-900 bg-slate-950 px-4 py-3 text-sm font-semibold text-white"
+                className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-950"
               >
                 <span className="flex items-center gap-2">
-                  <span className="flex items-center gap-1 rounded-full bg-cyan-300 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-950">
-                    <span className="h-1.5 w-1.5 rounded-full bg-slate-950" />
+                  <span className="flex items-center gap-1 rounded-full bg-cyan-100 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-800">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-700" />
                     Gratis
                   </span>
                   Movement Snack
                 </span>
-                <FaArrowRight className="text-xs text-cyan-300" />
+                <FaArrowRight className="text-xs text-cyan-700" />
               </Link>
               {navItems.map((item) => (
                 <button
