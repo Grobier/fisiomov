@@ -59,9 +59,9 @@ const FreeAccess = () => {
   }
 
   return (
-    <section id="acceso-gratis" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-950 via-gray-900 to-black relative overflow-hidden">
+    <section id="acceso-gratis" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-950 via-gray-900 to-black relative overflow-hidden flex flex-col">
       {/* Volver al inicio */}
-      <div className="relative max-w-5xl mx-auto mb-8">
+      <div className="relative max-w-5xl mx-auto w-full mb-8">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
@@ -75,7 +75,33 @@ const FreeAccess = () => {
       <div className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-blue-600/20 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-cyan-500/15 blur-3xl" />
 
-      <div className="relative max-w-5xl mx-auto">
+      <div className="relative max-w-5xl mx-auto w-full flex-1 flex flex-col">
+        {submitted ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex-1 flex flex-col items-center justify-center text-center py-20"
+          >
+            <div className="w-24 h-24 bg-blue-600/20 border border-blue-500/30 rounded-full flex items-center justify-center mx-auto mb-6">
+              <FaCheckCircle className="text-blue-400 text-5xl" />
+            </div>
+            <h3 className="text-white text-4xl font-extrabold mb-4">Todo listo!</h3>
+            <p className="text-gray-300 text-xl max-w-md mb-3">
+              Te enviamos el enlace de acceso a tu correo.
+            </p>
+            <p className="text-gray-500 text-base max-w-sm mb-10">
+              Revisa tu bandeja de entrada (y la carpeta de spam por si acaso). Disfruta la libreria Movement Snack para siempre.
+            </p>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3 rounded-2xl transition-colors text-sm font-medium"
+            >
+              <FaArrowLeft className="text-xs" />
+              Volver al inicio
+            </Link>
+          </motion.div>
+        ) : (
+          <>
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -152,25 +178,10 @@ const FreeAccess = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-white/5 border border-blue-500/30 rounded-3xl p-10 text-center"
-              >
-                <div className="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FaCheckCircle className="text-blue-400 text-3xl" />
-                </div>
-                <h3 className="text-white text-2xl font-bold mb-2">Listo!</h3>
-                <p className="text-gray-400">
-                  Revisa tu correo. Te enviamos el acceso a la libreria Movement Snack y tu bono de regalo.
-                </p>
-              </motion.div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-4"
-              >
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-4"
+            >
                 <div>
                   <label className="block text-gray-400 text-sm mb-1.5">Tu nombre</label>
                   <input
@@ -244,9 +255,10 @@ const FreeAccess = () => {
                   Tu informacion esta segura y no sera compartida.
                 </p>
               </form>
-            )}
           </motion.div>
         </div>
+          </>
+        )}
       </div>
     </section>
   )
