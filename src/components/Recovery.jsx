@@ -1,47 +1,131 @@
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Check, ChevronLeft, Clock, Home, PlayCircle, Star } from 'lucide-react'
+import { ChevronLeft, Clock, Home, PlayCircle, Star } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 import WhatsAppFloat from './WhatsAppFloat'
 
 const plans = [
   {
-    title: 'Sauna unica',
-    subtitle: 'Solo sauna',
-    price: '$20.000',
-    duration: '20 min',
-    description: 'Una sesion puntual para bajar carga, relajar el cuerpo y acelerar recuperacion.',
-    features: ['Sauna de 20 minutos', 'Recuperacion inmediata', 'Ideal post entrenamiento'],
-    action: 'sauna_unica',
+    planLabel: 'Plan 01 - Esencial',
+    title: 'Recovery Esencial',
+    subtitle: 'La forma mas simple de resetear el cuerpo y volver a sentirte liviano.',
+    price: '$35.000',
+    duration: '45 min',
+    action: 'esencial',
+    protocol: [
+      {
+        range: '0-10',
+        step: 'Sauna de vapor',
+        detail: 'Apertura termica, vasodilatacion inicial',
+        type: 'pasivo',
+      },
+      {
+        range: '10-20',
+        step: 'Pistola de percusion',
+        detail: 'Flush de metabolitos, zona de mayor carga del entrenamiento',
+        type: 'semi',
+      },
+      {
+        range: '20-45',
+        step: 'Presoterapia (silla zero gravity)',
+        detail: 'Drenaje venoso y linfatico pasivo, cierre de sesion',
+        type: 'pasivo',
+      },
+    ],
   },
   {
-    title: 'Recovery unico',
-    subtitle: 'Masaje + pistola + sauna',
-    price: '$33.000',
-    duration: '60 min',
-    description: 'La sesion mas completa para descargar tension, mejorar sensaciones y salir renovado.',
-    features: ['Masaje manual', 'Pistola de percusion', 'Sauna', 'Recuperacion total'],
-    action: 'recovery_unico',
+    planLabel: 'Plan 02 - Completo',
+    title: 'Recovery Completo',
+    subtitle: 'Mas acompanamiento, mas precision y el toque justo de trabajo manual.',
+    price: '$55.000',
+    duration: '55 min',
+    action: 'completo',
+    protocol: [
+      {
+        range: '0-10',
+        step: 'Sauna de vapor',
+        detail: 'Apertura termica, preparacion fascial pre-masaje',
+        type: 'pasivo',
+      },
+      {
+        range: '10-20',
+        step: 'Pistola de percusion',
+        detail: 'Flush post-sauna, tejido preparado para masaje manual',
+        type: 'semi',
+      },
+      {
+        range: '20-30',
+        step: 'Masaje manual',
+        detail: 'Intervencion manual puntual para descargar las zonas con mayor tension',
+        type: 'activo',
+      },
+      {
+        range: '30-55',
+        step: 'Presoterapia (silla zero gravity)',
+        detail: 'Drenaje y cierre pasivo de sesion',
+        type: 'pasivo',
+      },
+    ],
+  },
+  {
+    planLabel: 'Plan 03 - Premium',
+    title: 'Full Recovery',
+    subtitle: 'La experiencia mas completa para recuperarte mejor, por mas tiempo y contigo presente.',
+    price: '$65.000',
+    duration: '65 min',
+    action: 'premium',
     featured: true,
+    protocol: [
+      {
+        range: '0-20',
+        step: 'Sauna de vapor',
+        detail: 'Sesion termica extendida, maxima relajacion del SNC',
+        type: 'pasivo',
+      },
+      {
+        range: '20-30',
+        step: 'Pistola de percusion',
+        detail: 'Flush profundo, tejido optimamente preparado',
+        type: 'semi',
+      },
+      {
+        range: '30-50',
+        step: 'Masaje manual',
+        detail: 'Trabajo manual profundo, mas presente y mas protagonista en la sesion',
+        type: 'activo',
+      },
+      {
+        range: '50-65',
+        step: 'Presoterapia (silla zero gravity)',
+        detail: 'Drenaje extendido, cierre completo en reposo total',
+        type: 'pasivo',
+      },
+    ],
+  },
+]
+
+const monthlyPacks = [
+  {
+    title: 'Recovery Esencial x 4',
+    subtitle: '1 sesion por semana - 45 min',
+    savings: 'Ahorras $10.000',
+    price: '$130.000',
+    action: 'pack_esencial',
   },
   {
-    title: 'Plan mensual',
-    subtitle: 'Sauna semanal',
-    price: '$39.990',
-    duration: '4 sesiones',
-    description: 'Para quienes quieren sumar recuperacion de forma constante en la semana.',
-    features: ['1 sesion semanal', '20 min cada una', 'Mejor constancia', 'Ahorro mensual'],
-    action: 'basico',
+    title: 'Recovery Completo x 4',
+    subtitle: '1 sesion por semana - 55 min',
+    savings: 'Ahorras $20.000',
+    price: '$200.000',
+    action: 'pack_completo',
   },
   {
-    title: 'Plan plus',
-    subtitle: 'Sauna dos veces por semana',
-    price: '$59.990',
-    duration: '8 sesiones',
-    description: 'Mas frecuencia para quienes entrenan mas y necesitan sostener mejor el rendimiento.',
-    features: ['2 sesiones semanales', 'Mejor descarga', 'Mas recuperacion', 'Menor costo por sesion'],
-    action: 'plus',
+    title: 'Full Recovery x 4',
+    subtitle: '1 sesion por semana - 65 min - mejor valor mensual',
+    savings: 'Ahorras $30.000',
+    price: '$230.000',
+    action: 'pack_premium',
   },
 ]
 
@@ -82,10 +166,12 @@ const Recovery = () => {
     const phoneNumber = '56963352063'
     const messages = {
       default: 'Hola! Quiero reservar una sesion de recovery. Cuando podemos agendar?',
-      sauna_unica: 'Hola! Quiero reservar una sesion unica de sauna. Cuando podemos agendar?',
-      recovery_unico: 'Hola! Quiero reservar una sesion unica de recovery. Cuando podemos agendar?',
-      basico: 'Hola! Quiero contratar el plan mensual de recovery. Cuando podemos agendar?',
-      plus: 'Hola! Quiero contratar el plan plus de recovery. Cuando podemos agendar?',
+      esencial: 'Hola! Quiero reservar el plan Recovery Esencial. Cuando podemos agendar?',
+      completo: 'Hola! Quiero reservar el plan Recovery Completo. Cuando podemos agendar?',
+      premium: 'Hola! Quiero reservar el plan Full Recovery. Cuando podemos agendar?',
+      pack_esencial: 'Hola! Quiero contratar el pack Recovery Esencial x 4. Cuando podemos agendar?',
+      pack_completo: 'Hola! Quiero contratar el pack Recovery Completo x 4. Cuando podemos agendar?',
+      pack_premium: 'Hola! Quiero contratar el pack Full Recovery x 4. Cuando podemos agendar?',
     }
 
     trackEvent('click', 'whatsapp_button', serviceName, 1)
@@ -165,7 +251,7 @@ const Recovery = () => {
         <div className="container-max">
           <div className="mb-10 text-center">
             <span className="section-eyebrow">Por que recovery</span>
-            <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Una recuperacion mas inteligente.</h2>
+            <h2 className="mt-4 text-3xl font-bold text-slate-950 md:text-4xl">Una recuperacion mas inteligente.</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -175,7 +261,7 @@ const Recovery = () => {
               { title: 'Sostiene rendimiento', text: 'Te ayuda a recuperar mejor para entrenar con mas continuidad.' },
             ].map((item) => (
               <div key={item.title} className="mesh-card p-7">
-                <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-slate-700">{item.title}</p>
+                <p className="mb-3 text-base font-bold uppercase tracking-[0.16em] text-slate-800">{item.title}</p>
                 <p className="text-sm leading-7 text-slate-600">{item.text}</p>
               </div>
             ))}
@@ -188,7 +274,7 @@ const Recovery = () => {
           <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
             <div className="mb-5 flex items-center gap-3">
               <PlayCircle className="h-6 w-6 text-blue-600" />
-              <h3 className="text-2xl font-bold text-slate-950">Como el sauna apoya tu estado fisico</h3>
+              <h3 className="text-xl font-semibold text-slate-950 md:text-2xl">Como el sauna apoya tu estado fisico</h3>
             </div>
             <div className="aspect-video overflow-hidden rounded-[24px] bg-slate-900">
               <iframe
@@ -205,7 +291,7 @@ const Recovery = () => {
           <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
             <div className="mb-5 flex items-center gap-3">
               <PlayCircle className="h-6 w-6 text-blue-600" />
-              <h3 className="text-2xl font-bold text-slate-950">Testimonio recovery</h3>
+              <h3 className="text-xl font-semibold text-slate-950 md:text-2xl">Testimonio recovery</h3>
             </div>
             <div className="aspect-video overflow-hidden rounded-[24px] bg-slate-900">
               <iframe
@@ -225,53 +311,145 @@ const Recovery = () => {
         <div className="container-max">
           <div className="mb-10 text-center">
             <span className="section-eyebrow">Planes</span>
-            <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Elige el formato que mejor te acomoda.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
-              Sesiones unicas o planes para sostener tu recuperacion con mas frecuencia.
+            <h2 className="mt-4 text-3xl font-bold text-slate-950 md:text-4xl">Elige el formato que mejor te acomoda.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
+              Tres formatos de recovery y packs mensuales para sostener la recuperacion con continuidad.
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {plans.map((plan) => (
-              <div
+          <div className="grid gap-6 xl:grid-cols-3">
+            {plans.map((plan, index) => (
+              <motion.div
                 key={plan.title}
-                className={`rounded-[30px] border p-6 shadow-[0_18px_40px_rgba(15,23,42,0.08)] ${
-                  plan.featured ? 'border-slate-950 bg-slate-950 text-white' : 'border-slate-200 bg-white text-slate-950'
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                whileHover={{ y: -10, scale: 1.015 }}
+                className={`relative flex h-full flex-col overflow-hidden rounded-[30px] border p-0 shadow-[0_22px_60px_rgba(15,23,42,0.10)] ${
+                  plan.featured
+                    ? 'border-emerald-400 bg-[linear-gradient(180deg,#ffffff_0%,#f3fbf7_100%)] text-slate-950 ring-2 ring-emerald-100 transition-transform duration-300 hover:shadow-[0_32px_80px_rgba(16,185,129,0.24)]'
+                    : 'border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f7fafd_100%)] text-slate-950 transition-transform duration-300 hover:border-slate-300 hover:shadow-[0_30px_80px_rgba(15,23,42,0.16)]'
                 }`}
               >
-                <div className="mb-5 flex items-center justify-between gap-3">
-                  <span className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] ${plan.featured ? 'bg-white/10 text-slate-200' : 'bg-slate-100 text-slate-600'}`}>
-                    {plan.subtitle}
-                  </span>
-                  <div className={`flex items-center gap-1 text-sm ${plan.featured ? 'text-slate-300' : 'text-slate-500'}`}>
-                    <Clock className="h-4 w-4" />
-                    {plan.duration}
+                <div
+                  className={`h-2 w-full ${
+                    plan.featured ? 'bg-[linear-gradient(90deg,#34d399_0%,#10b981_100%)]' : 'bg-[linear-gradient(90deg,#0f172a_0%,#334155_100%)]'
+                  }`}
+                />
+
+                <div className="relative flex h-full flex-col p-6">
+                  <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 rounded-full blur-3xl opacity-60">
+                    <div className={`h-full w-full ${plan.featured ? 'bg-emerald-200/70' : 'bg-slate-200/70'}`} />
+                  </div>
+
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className={`text-xs font-bold uppercase tracking-[0.24em] ${plan.featured ? 'text-emerald-700' : 'text-slate-500'}`}>
+                          {plan.planLabel}
+                        </p>
+                        <h3 className="mt-3 text-3xl font-black leading-none text-slate-950">{plan.title}</h3>
+                      </div>
+
+                      <div
+                        className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] ${
+                          plan.featured ? 'bg-emerald-500 text-white' : 'bg-slate-950 text-white'
+                        }`}
+                      >
+                        {plan.duration}
+                      </div>
+                    </div>
+
+                    <p className="mt-4 max-w-[34ch] text-sm leading-6 text-slate-600 md:text-base">{plan.subtitle}</p>
+
+                    <div
+                      className={`mt-6 flex items-end justify-between rounded-[24px] border px-5 py-4 ${
+                        plan.featured ? 'border-emerald-200 bg-white/80' : 'border-slate-200 bg-white/85'
+                      }`}
+                    >
+                      <div>
+                        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500">Valor sesion</p>
+                        <div className="mt-2 flex items-end gap-2">
+                          <p className="text-4xl font-black leading-none text-slate-950">{plan.price}</p>
+                          <p className="pb-1 text-xs uppercase tracking-[0.12em] text-slate-500">CLP</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className={`mt-6 rounded-[24px] border px-5 py-5 ${
+                        plan.featured ? 'border-emerald-200 bg-emerald-50/70' : 'border-slate-200 bg-slate-50/85'
+                      }`}
+                    >
+                      <p className="text-xs font-bold uppercase tracking-[0.24em] text-slate-500">Protocolo</p>
+                      <div className="mt-4 space-y-4">
+                        {plan.protocol.map((item) => (
+                          <div key={`${plan.title}-${item.range}-${item.step}`} className="grid grid-cols-[62px_1fr] gap-4 border-b border-slate-200/70 pb-3 last:border-b-0 last:pb-0">
+                            <p className="text-sm font-semibold text-slate-400">{item.range}'</p>
+                            <div>
+                              <p className="text-base font-semibold text-slate-950 md:text-lg">{item.step}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-auto pt-8">
+                    <button
+                      onClick={() => handleWhatsAppClick(plan.action)}
+                      className={`inline-flex w-full items-center justify-center rounded-2xl px-4 py-3 text-center text-sm font-semibold leading-none transition-all duration-300 ${
+                        plan.featured
+                          ? 'bg-emerald-500 text-white hover:bg-emerald-600 hover:shadow-[0_18px_40px_rgba(16,185,129,0.28)]'
+                          : 'bg-slate-950 text-white hover:bg-slate-900 hover:shadow-[0_18px_40px_rgba(15,23,42,0.22)]'
+                      }`}
+                    >
+                      Contratar plan
+                    </button>
                   </div>
                 </div>
-
-                <h3 className="text-2xl font-bold">{plan.title}</h3>
-                <p className={`mt-2 text-3xl font-extrabold ${plan.featured ? 'text-white' : 'text-slate-950'}`}>{plan.price}</p>
-                <p className={`mt-4 text-sm leading-7 ${plan.featured ? 'text-slate-300' : 'text-slate-600'}`}>{plan.description}</p>
-
-                <div className="mt-5 space-y-3">
-                  {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-start gap-3">
-                      <Check className={`mt-0.5 h-4 w-4 shrink-0 ${plan.featured ? 'text-cyan-300' : 'text-slate-950'}`} />
-                      <p className={`text-sm leading-6 ${plan.featured ? 'text-slate-200' : 'text-slate-700'}`}>{feature}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <button
-                  onClick={() => handleWhatsAppClick(plan.action)}
-                  className={`mt-6 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold transition-colors ${
-                    plan.featured ? 'bg-white text-slate-950 hover:bg-slate-100' : 'bg-slate-950 text-white hover:bg-slate-900'
-                  }`}
-                >
-                  Reservar plan
-                </button>
-              </div>
+              </motion.div>
             ))}
+          </div>
+
+          <div className="mt-12">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-slate-500">Packs mensuales</p>
+            <div className="mt-4 overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
+              {monthlyPacks.map((pack, index) => (
+                <div key={pack.title} className={`flex flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:justify-between ${index !== monthlyPacks.length - 1 ? 'border-b border-slate-200' : ''}`}>
+                  <div>
+                    <p className="text-xl font-semibold text-slate-950 md:text-2xl">{pack.title}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600 md:text-base">{pack.subtitle}</p>
+                  </div>
+                  <div className="flex min-w-[260px] flex-col items-start gap-3 md:items-end">
+                    <div className="flex items-baseline gap-4 md:justify-end">
+                      <p className="text-sm font-semibold uppercase tracking-[0.12em] text-emerald-600 md:text-base md:normal-case md:tracking-normal">{pack.savings}</p>
+                      <p className="text-2xl font-semibold text-slate-950">{pack.price}</p>
+                    </div>
+                    <button
+                      onClick={() => handleWhatsAppClick(pack.action)}
+                      className="inline-flex w-[160px] items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-900"
+                    >
+                      Reservar pack
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-5 flex flex-col gap-4 rounded-[24px] border border-slate-200 bg-white/80 px-5 py-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-lg font-semibold text-slate-950">Consulta por servicio individual</p>
+                <p className="mt-1 text-sm leading-6 text-slate-600">Si quieres un servicio por si solo, escribeme y te ayudo a elegir la mejor opcion.</p>
+              </div>
+              <button
+                onClick={() => handleWhatsAppClick('default')}
+                className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-900"
+              >
+                Consultar
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -280,7 +458,7 @@ const Recovery = () => {
         <div className="container-max">
           <div className="mb-10 text-center">
             <span className="section-eyebrow">Testimonios</span>
-            <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Lo que dicen quienes ya lo probaron.</h2>
+            <h2 className="mt-4 text-3xl font-bold text-slate-950 md:text-4xl">Lo que dicen quienes ya lo probaron.</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -303,8 +481,8 @@ const Recovery = () => {
         <div className="container-max">
           <div className="rounded-[36px] border border-slate-200 bg-white px-8 py-14 text-center shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
             <span className="section-eyebrow">Reserva tu sesion</span>
-            <h2 className="mt-4 text-4xl font-bold text-slate-950 md:text-5xl">Listo para recuperar mejor?</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
+            <h2 className="mt-4 text-3xl font-bold text-slate-950 md:text-4xl">Listo para recuperar mejor?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
               Escribeme y agendamos la opcion que mas sentido tenga para tu entrenamiento y tu cuerpo.
             </p>
             <div className="mt-8">
