@@ -29,7 +29,7 @@ const Services = () => {
   }
 
   return (
-    <section id="servicios" className="section-padding">
+    <section id="servicios" className="section-padding bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.08),transparent_22%),linear-gradient(180deg,#ffffff_0%,#f4fbff_100%)]">
       <div className="container-max">
         <div className="mb-12 text-center">
           <span className="section-eyebrow">Servicios</span>
@@ -56,11 +56,13 @@ const Services = () => {
                 onFocus={() => setActiveServiceId(service.id)}
                 onClick={() => openServicePage(service)}
                 className={`rounded-[28px] border p-6 text-left transition-all duration-300 ${
-                  isActive ? 'border-slate-950 bg-slate-950 text-white' : 'border-slate-200 bg-white text-slate-950 hover:border-slate-300'
+                  isActive
+                    ? 'border-cyan-500 bg-[linear-gradient(135deg,#0f172a_0%,#0f3b46_48%,#0f766e_100%)] text-white shadow-[0_24px_60px_rgba(8,145,178,0.24)]'
+                    : 'border-slate-200 bg-white/85 text-slate-950 hover:border-cyan-200 hover:bg-white hover:shadow-[0_20px_50px_rgba(14,165,233,0.10)]'
                 }`}
               >
                 <div className="mb-6">
-                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${isActive ? 'bg-white/10' : 'bg-slate-100'}`}>
+                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${isActive ? 'bg-white/10' : 'bg-[linear-gradient(135deg,#eff6ff_0%,#ecfeff_100%)]'}`}>
                     <IconComponent className={`text-xl ${isActive ? 'text-white' : 'text-slate-950'}`} />
                   </div>
                 </div>
@@ -68,7 +70,7 @@ const Services = () => {
                 <h3 className="mb-3 text-2xl font-bold">{service.title}</h3>
                 <p className={`line-clamp-3 text-sm leading-7 ${isActive ? 'text-slate-300' : 'text-slate-600'}`}>{service.description}</p>
 
-                <div className={`mt-6 flex items-center gap-2 text-sm font-semibold ${isActive ? 'text-slate-200' : 'text-slate-700'}`}>
+                <div className={`mt-6 flex items-center gap-2 text-sm font-semibold ${isActive ? 'text-cyan-100' : 'text-slate-700'}`}>
                   <span>Ir a la seccion</span>
                   <FaArrowRight />
                 </div>

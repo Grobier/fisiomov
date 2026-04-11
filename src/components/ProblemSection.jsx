@@ -24,7 +24,7 @@ const problems = [
 
 const ProblemSection = () => {
   return (
-    <section className="bg-slate-100 px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.10),transparent_24%),linear-gradient(180deg,#eef8ff_0%,#f5fbff_52%,#ffffff_100%)] px-4 py-20 sm:px-6 lg:px-8">
       <div className="container-max">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -51,10 +51,10 @@ const ProblemSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.35 }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="rounded-[30px] border border-slate-200 bg-white p-7 shadow-[0_18px_40px_rgba(15,23,42,0.06)]"
+              className="rounded-[30px] border border-white/80 bg-white/80 p-7 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-sm"
             >
               <div className="mb-5 flex items-center gap-4">
-                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl bg-slate-100 text-3xl">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl bg-[linear-gradient(135deg,#e0f2fe_0%,#d1fae5_100%)] text-3xl shadow-inner">
                   {problem.emoji}
                 </div>
                 <div>

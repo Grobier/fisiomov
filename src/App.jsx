@@ -15,6 +15,7 @@ import ScrollAnimations from './components/ScrollAnimations'
 import Recovery from './components/Recovery'
 import FreeAccess from './components/FreeAccess'
 import ServiceDetail from './components/ServiceDetail'
+import StretchTherapistCourse from './components/StretchTherapistCourse'
 
 function Home() {
   return (
@@ -42,6 +43,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recovery" element={<Recovery />} />
         <Route path="/recursos-gratuitos" element={<FreeAccess />} />
+        <Route path="/stretch-therapist" element={<StretchTherapistCourse />} />
+        <Route path="/stretching-asistido-profesional" element={<StretchTherapistCourse />} />
         <Route path="/servicios/:slug" element={<ServiceDetail />} />
       </Routes>
     </div>
