@@ -41,14 +41,118 @@ const services = [
       'Para quienes quieren entrenar solos pero con una planificacion profesional, seguimiento y progresiones claras.',
     icon: FaLaptop,
     price: '',
-    duration: '3x/semana · Programa mensual',
+    duration: 'Programa mensual',
     videoUrl: '',
-    detailedPricing: [
-      { name: 'Plan mensual', price: '', duration: '30 dias · 3x/semana' },
-      { name: 'Plan trimestral', price: '', duration: '90 dias · 3x/semana' },
-      { name: 'Plan anual', price: '', duration: '365 dias · 3x/semana' },
-    ],
     pricingNote: 'Incluye ejercicios, progresiones, videos demostrativos y soporte por mensaje.',
+    planOverview: {
+      title: 'Planes de entrenamiento online',
+      intro: [
+        'En nuestros programas no solo entrenas. Te acompano en tu proceso para que avances de forma segura, progresiva y con resultados reales.',
+        'Cada plan esta diseñado segun tu nivel, objetivos y estilo de vida, incorporando no solo entrenamiento, sino tambien seguimiento y recuperacion.',
+      ],
+      closing:
+        'Nuestro enfoque no es solo que entrenes, sino que progreses, te sientas mejor y puedas sostener resultados en el tiempo.',
+    },
+    planTiers: [
+      {
+        name: 'Plan Inicio',
+        audience: 'Para comenzar de forma guiada y segura',
+        regularPrice: '$39.990',
+        preferredPrice: '$35.000',
+        includes: [
+          {
+            title: 'Planificacion de entrenamiento mensual personalizada',
+            description:
+              'Se diseña un programa de entrenamiento adaptado a tu objetivo, nivel y disponibilidad. No es una rutina generica, es especifica para ti.',
+          },
+          {
+            title: 'Adaptacion a tu nivel y condicion',
+            description:
+              'Se consideran tus capacidades actuales para evitar lesiones y asegurar un progreso adecuado.',
+          },
+          {
+            title: 'Ajustes basicos 1 vez al mes',
+            description:
+              'Se realizan modificaciones en tu planificacion 1 vez al mes, en caso de ser necesario, para mantener el avance.',
+          },
+          {
+            title: 'Feedback 1 vez al mes',
+            description:
+              'Recibes retroalimentacion mensual sobre tu proceso y tu plan, en caso de ser necesario.',
+          },
+        ],
+      },
+      {
+        name: 'Plan Progreso',
+        audience: 'Para avanzar de forma constante y evitar estancamientos',
+        regularPrice: '$54.990',
+        preferredPrice: '$50.000',
+        includes: [
+          {
+            title: 'Planificacion de entrenamiento mensual personalizada',
+            description: 'Programa adaptado completamente a tus objetivos y evolucion.',
+          },
+          {
+            title: 'Ajustes cada 2 semanas',
+            description:
+              'Se revisa tu progreso y se realizan cambios cada 2 semanas en caso de ser necesario, para optimizar resultados y evitar estancamientos.',
+          },
+          {
+            title: 'Seguimiento basico',
+            description:
+              'Se monitorea tu avance, cumplimiento y sensaciones en el entrenamiento en caso de ser necesario.',
+          },
+          {
+            title: 'Resolucion de dudas prioritaria',
+            description:
+              'Tendras mayor rapidez y profundidad en las respuestas a tus consultas.',
+          },
+          {
+            title: '1 sesion mensual de recuperacion',
+            description:
+              'Acceso a una sesion de recuperacion (presoterapia), orientada a mejorar la circulacion, disminuir la fatiga y favorecer la recuperacion muscular.',
+          },
+        ],
+      },
+      {
+        name: 'Plan Rendimiento',
+        audience: 'Para lograr resultados reales y cuidar tu cuerpo al maximo',
+        regularPrice: '$69.990',
+        preferredPrice: '$60.000',
+        includes: [
+          {
+            title: 'Planificacion totalmente personalizada',
+            description:
+              'Programa detallado segun objetivos especificos, con progresiones claras y estructuradas.',
+          },
+          {
+            title: 'Ajustes semanales',
+            description:
+              'Se realizan modificaciones semanales en base a tu rendimiento, en caso de ser necesario, optimizando cada etapa del proceso.',
+          },
+          {
+            title: 'Seguimiento completo',
+            description:
+              'Analisis de tu progreso, sensaciones y desempeno en caso de ser necesario para asegurar resultados.',
+          },
+          {
+            title: 'Comunicacion directa',
+            description:
+              'Acceso mas cercano para resolver dudas, ajustar el plan y acompanarte en el proceso.',
+          },
+          {
+            title: '2 sesiones mensuales de recuperacion',
+            description:
+              'Acceso a sesiones de recuperacion (presoterapia) para mejorar el rendimiento y reducir la fatiga acumulada.',
+          },
+          {
+            title: 'Acceso a sauna (1 vez por mes)',
+            description:
+              'Espacio orientado a la recuperacion fisica y mental, ayudando a disminuir tensiones y mejorar el bienestar general.',
+          },
+        ],
+      },
+    ],
     features: [
       { title: 'Hecho para ti', description: 'No es una rutina generica ni un PDF olvidado.' },
       { title: 'Seguimiento real', description: 'Hay una persona revisando tu progreso y ajustando.' },
