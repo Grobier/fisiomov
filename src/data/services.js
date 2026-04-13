@@ -57,8 +57,8 @@ const services = [
       {
         name: 'Plan Inicio',
         audience: 'Para comenzar de forma guiada y segura',
-        regularPrice: '$39.990',
-        preferredPrice: '$35.000',
+        regularPrice: '$44.990',
+        preferredPrice: '$40.000',
         includes: [
           {
             title: 'Planificacion de entrenamiento mensual personalizada',
@@ -76,17 +76,17 @@ const services = [
               'Se realizan modificaciones en tu planificacion 1 vez al mes, en caso de ser necesario, para mantener el avance.',
           },
           {
-            title: 'Feedback 1 vez al mes',
+            title: '1 feedback mensual de hasta 3 videos',
             description:
-              'Recibes retroalimentacion mensual sobre tu proceso y tu plan, en caso de ser necesario.',
+              'Recibes una unica devolucion mensual, por escrito o audio breve, basada en hasta 3 videos enviados. No incluye revision de todas las sesiones del mes ni seguimiento continuo.',
           },
         ],
       },
       {
         name: 'Plan Progreso',
         audience: 'Para avanzar de forma constante y evitar estancamientos',
-        regularPrice: '$54.990',
-        preferredPrice: '$50.000',
+        regularPrice: '$59.990',
+        preferredPrice: '$55.000',
         includes: [
           {
             title: 'Planificacion de entrenamiento mensual personalizada',
@@ -117,8 +117,8 @@ const services = [
       {
         name: 'Plan Rendimiento',
         audience: 'Para lograr resultados reales y cuidar tu cuerpo al maximo',
-        regularPrice: '$69.990',
-        preferredPrice: '$60.000',
+        regularPrice: '$74.990',
+        preferredPrice: '$70.000',
         includes: [
           {
             title: 'Planificacion totalmente personalizada',
